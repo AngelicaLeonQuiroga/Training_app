@@ -33,30 +33,35 @@ def initial_quiz_screen():
     with st.form("initial_quiz"):
         q1 = st.radio(
             "1.  Ha recibido algún tipo de entrenamiento relacionado con la seguridad contra incendios: ",
-            ["En mi trabajo", "El el colegio", "Otro", "Nunca he recibido entrenamientos"]
+            ["En mi trabajo", "El el colegio", "Otro", "Nunca he recibido entrenamientos"],
+            index=None
         )
 
         q2 = st.radio(
             "2. Si has recibido un entrenamiento, ¿de quién lo has recibido?",
             ["Compañías externas que vienen al trabajo ", "Programas de extension de la universidad", 
-             "Internet","Videos en la granja","Otro","Nunca he recibido entrenamientos"]
+             "Internet","Videos en la granja","Otro","Nunca he recibido entrenamientos"],
+             index=None
         )
 
         q3 = st.radio(
             "3. Indiquenos cual es el formato que mas le gusta aprender?",
             ["Redes sociales como Facebook o tiktok", "Entrenamientos con videos",
-             "Cuando los profesores vienen a la granja y nos ensenan", "Ninguno no me gusta aprender cosas nuevas", "Otro",  "No sé "]
+             "Cuando los profesores vienen a la granja y nos ensenan", "Ninguno no me gusta aprender cosas nuevas", "Otro",  "No sé "],
+             index=None
         )
         q4 = st.radio(
             "4. Verdadero o Falso: Existen diferentes clases de incendio (A, B, C, D) según lo que se quema, y un mismo extintor no sirve para todas. Por eso se usan los extintores ABC, que cubren las clases más comunes.",
-            ["Verdadero", "Falso", "No sé "]
+            ["Verdadero", "Falso", "No sé "],
+            index=None
         )
         q5 = st.radio(
             "5. ¿Qué tipos de fuego puede apagar un extintor ABC? ",
             ["Materiales comunes como madera y papel (A), líquidos inflamables como aceite o gasolina (B) y equipos eléctricos (C) ",
              "Solo fuegos electricos", "Solo fuegos de papel y madera",
              "Sirve para todos los fuegos, incluidos los de metales",
-             "No sé "]
+             "No sé "],
+             index=None
         )
         q6 = st.radio(
             "6. ¿Por qué una pila de heno húmedo o de estiércol puede incendiarse sola, sin chispa ni llama?",
@@ -64,7 +69,8 @@ def initial_quiz_screen():
               "Porque el sol la calienta por fuera",
               "Porque el viento la enciende",
               "El heno y el estiércol nunca se incendian solos ",
-                "No sé "]
+                "No sé "],
+                index=None
         )
         q7 = st.radio(
             "7. En la sala de descanso comienza a incendiarse un papel dentro de un basurero. ¿Qué debo hacer?",
@@ -72,7 +78,8 @@ def initial_quiz_screen():
               "Usar un extintor ABC",
               "Cubrir el basurero para que el agua se apague",
               "No usar ningun extintor ",
-              "No sé "]
+              "No sé "],
+              index=None
         )
         #video 2
         q8 = st.radio(
@@ -81,7 +88,8 @@ def initial_quiz_screen():
               "Agitándolo para escuchar si tiene polvo",
               "Por el color rojo del extintor",
               "No se puede saber hasta que se usa ",
-              "No sé "]
+              "No sé "],
+              index=None
         )
         q9 = st.radio(
             "9. ¿Hacia dónde debe apuntarse la boquilla del extintor a la hora de apagar un fuego? ",
@@ -89,13 +97,14 @@ def initial_quiz_screen():
               "Hacia el humo",
               "Hacia la base del fuego ",
               "Hacia cualquier para del incendio lo importante es actuar ",
-              "No sé "]
+              "No sé "],
+              index=None
         )
         q10 = st.radio(
             "10. Verdadero o Falso: Debo barrer el fuego moviendo la manguera de lado a lado. ",
             ["Verdadero ",
               "Falso",
-              "No sé "]
+              "No sé "],index=None
         )
         #video 3
         q11 = st.radio(
@@ -104,7 +113,7 @@ def initial_quiz_screen():
               "Reportarlo inmediatamente al supervisor y seguir trabajando ",
               "Guardar el tractor en el establo ",
               "Esperar al siguiente turno  ",
-              "No sé "]
+              "No sé "],index=None
         )
         q12 = st.radio(
             "12. ¿Cuál de las siguientes acciones puede ayudar a prevenir incendios en la granja? ",
@@ -113,6 +122,7 @@ def initial_quiz_screen():
               "Mantener limpia la maquinaria (ej., radiador, motor) y las áreas de trabajo ",
               "Todas las anteriores",
               "No sé "]
+              ,index=None
         )
         q13 = st.radio(
             "13. ¿Qué materiales pueden acumularse en el compartimento del motor y aumentar el riesgo de incendio? ",
@@ -121,6 +131,7 @@ def initial_quiz_screen():
               "Aceite limpio y herramientas ",
               "Arena, piedras y polvo ",
               "No sé "]
+              ,index=None
         )
         #video 4
         q14 = st.radio(
@@ -130,6 +141,7 @@ def initial_quiz_screen():
               "Apagar la estufa y cubrir el recipiente con una tapa metálica o un trapo grueso ligeramente húmedo",
               "Mover la sartén rápidamente al fregadero",
               "No sé "]
+              ,index=None
         )
         q15 = st.radio(
             "15. ¿Cuál de las siguientes acciones ayuda a prevenir incendios en el hogar? ",
@@ -137,13 +149,14 @@ def initial_quiz_screen():
               "Mantener objetos inflamables lejos de fuentes de calor ",
               "Usar un solo enchufe eléctrico para conectar varios electrodomésticos a la vez ",
               "Dejar toallas cerca de la estufa mientras se cocina  ",
-              "No sé "]
+              "No sé "],
+              index=None
         )
         q16 = st.radio(
             "16. Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio.",
             ["Verdadero",
               "Falso",
-              "No sé "]
+              "No sé "],index=None
         )
         q17 = st.radio(
             "17. ¿Cómo sabe que el fuego es demasiado peligroso y debe dejar de apagarlo y salir de inmediato?",
@@ -151,7 +164,7 @@ def initial_quiz_screen():
               "El humo está llenando el cuarto y cuesta respirar o ver ",
               "El fuego está entre usted y la salida",
               "Todas las anteriores",
-              "No sé "]
+              "No sé "],index=None
         )
         q18 = st.radio(
             "18. ¿Cómo puede saber si un extintor está cargado y listo para usarse?",
@@ -159,7 +172,7 @@ def initial_quiz_screen():
               "Agitándolo para escuchar si tiene polvo",
               "Por el color rojo del extintor",
               "No se puede saber hasta que se usa ",
-              "No sé "]
+              "No sé "],index=None
         )
         q19 = st.radio(
             "19. ¿Qué debes hacer si el fuego es grande y no puedes controlarlo con el extintor?",
@@ -167,13 +180,21 @@ def initial_quiz_screen():
               "Salir de inmediato, avisar a los demás y llamar al 911",
               "Esconderte dentro del establo",
               "Buscar tus cosas antes de salir",
-              "No sé "]
+              "No sé "],index=None
         )
 
 
         submitted_quiz = st.form_submit_button("Submit answers")
 
     if submitted_quiz:
+        
+        # VALIDACIÓN GLOBAL
+        if None in [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
+                    q11, q12, q13, q14, q15, q16, q17, q18, q19]:
+            
+            st.error(" Please answer all questions before submitting.")
+            st.stop()
+
         
         answers = {
                 "q1": q1, "q2": q2, "q3": q3,
