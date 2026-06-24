@@ -1,0 +1,9 @@
+user,name,course,start_time,end_time,duration_seconds,status
+andres@gmail.com,andres,Fire Safety Training,2026-06-19 16:11:07.323989,2026-06-19 16:12:07.143539,59,completed
+julieta@gmail.com,julieta,Fire Safety Training,2026-06-19 17:18:27.782581,2026-06-19 17:18:57.437129,29,completed
+user1@gmail.com,user1,Fire Safety Training,2026-06-22 12:30:25.515768,2026-06-22 12:39:01.744764,516,completed
+user2@gmail.com,user2,Fire Safety Training,2026-06-22 12:39:51.101168,2026-06-22 12:44:01.328366,250,completed
+user3@gmail.com,user 3,Fire Safety Training,2026-06-22 12:44:42.471455,2026-06-22 12:47:21.019808,158,completed
+user4@gmail.com,user4,Fire Safety Training,2026-06-22 12:50:13.924947,2026-06-22 12:54:04.807052,230,completed
+user5@gmail.com,user5,Fire Safety Training,2026-06-22 13:09:14.911722,2026-06-22 13:10:36.853449,81,completed
+user6@gmail.com,user6,Fire Safety Training,2026-06-23 18:02:42.674325,2026-06-23 18:11:01.943212,499,completed
