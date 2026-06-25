@@ -43,11 +43,11 @@ def initial_quiz_screen():
              "Internet","Videos en la granja","Otro","Nunca he recibido entrenamientos"],
         )
 
-        q3 = st.radio(
+        q3 = st.multiselect(
             "3. Indiquenos cual es el formato que mas le gusta aprender?",
             ["Redes sociales como Facebook o tiktok", "Entrenamientos con videos",
              "Cuando los profesores vienen a la granja y nos ensenan", "Ninguno no me gusta aprender cosas nuevas", "Otro",  "No sé "],
-             index=None
+
         )
         q4 = st.radio(
             "4. Verdadero o Falso: Existen diferentes clases de incendio (A, B, C, D) según lo que se quema, y un mismo extintor no sirve para todas. Por eso se usan los extintores ABC, que cubren las clases más comunes.",
@@ -189,7 +189,7 @@ def initial_quiz_screen():
         
         # VALIDACIÓN GLOBAL
         if None in [q1, q3, q4, q5, q6, q7, q8, q9, q10,
-                    q11, q12, q13, q14, q15, q16, q17, q18, q19] or not q2:
+                    q11, q12, q13, q14, q15, q16, q17, q18, q19] or not q2 or not q3:
             
             st.error(" Please answer all questions before submitting.")
             st.stop()

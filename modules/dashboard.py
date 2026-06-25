@@ -269,9 +269,12 @@ def dashboard():
 
     # total usuarios
     total_pre = df_pre.shape[0]
+    
+    # ✅ EXPLODE MULTISELECT
+    df_q3 = df_pre.explode("q3")
 
     # contar respuestas
-    pre_counts = df_pre["q3"].value_counts()
+    pre_counts = df_q3["q3"].value_counts()
 
     data = []
 
