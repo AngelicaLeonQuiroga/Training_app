@@ -11,16 +11,31 @@ def home_screen():
     
     img_fire = get_image_base64("assets/fire.png")
     img_bio = get_image_base64("assets/biosecurity.png")
+    learning = get_image_base64("assets/learning.png")
+    farmer = get_image_base64("assets/farmer.png")
+    check = get_image_base64("assets/check.png")
 
     # Header
-    st.markdown("""
-    # Aprenda a su ritmo
-    ### Fortalezca sus conocimientos mediante módulos interactivos y evaluaciones prácticas que le permitirán medir su progreso antes y después de cada entrenamiento.
-    """)
 
+    
+    st.markdown(f"""
+        <div class="banner">
+            <h1>Aprende a tu ritmo <img src="data:image/png;base64,{learning}"  style="width:80px; margin:10px 0;"/>
+            </h1>
+        <div class="banner-text">
+        <p>Mejora tus habilidades con módulos interactivos y evaluaciones prácticas.
+            </p>
+            <p class="banner-text p"><img src="data:image/png;base64,{check}"  style="width:20px; margin:10px 0;"/> Elige un tema</p>
+            <p class="banner-text p"><img src="data:image/png;base64,{check}"  style="width:20px; margin:10px 0;"/> Realiza la evaluación inicial</p>
+            <p class="banner-text p"><img src="data:image/png;base64,{check}"  style="width:20px; margin:10px 0;"/> Completa el entrenamiento</p>
+            <p class="banner-text p"><img src="data:image/png;base64,{check}"  style="width:20px; margin:10px 0;"/> Consulta tus resultados</p>
+        </div>
+           </div>""", unsafe_allow_html=True)       
+    st.info("Selecciona un curso abajo 👇")
+    
     st.markdown("---")
 
-    st.subheader("Available Trainings")
+    st.subheader("Entrenamientos disponibles")
 
     # Layout en columnas
     col1, col2 = st.columns([1,1])

@@ -87,7 +87,7 @@ with st.sidebar:
             unsafe_allow_html=True
         )
 
-        # ✅ PROGRESO
+        #  PROGRESO
         progress = get_progress()
         st.progress(progress)
         st.caption(f"{int(progress * 100)}% completado")

@@ -199,3 +199,128 @@ section[data-testid="stSidebar"] div.stButton > button:active {
     transform: scale(0.98);
     box-shadow: 0 3px 6px rgba(0,0,0,0.12);
 }
+
+
+
+
+/* ----- BANNER ----- */
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 70px 50px;
+    border-radius: 20px;
+    background: radial-gradient(circle at top left, #ffffff, #eef4fb);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+    min-height: 320px;
+}
+
+
+.banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.banner-text {
+    max-width: 550px;
+}
+
+
+.banner-text h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+
+
+
+.banner-text p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+
+.banner-steps {
+    margin-top: 20px;
+    line-height: 2;
+    font-size: 16px;
+}
+
+.banner-steps span {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.banner-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.banner-image img {
+    max-width: 300px;
+    width: auto;
+    object-fit: contain;
+    max-height: 260px;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+
+}
+
+/* Responsive (MUY IMPORTANTE) */
+@media (max-width: 768px) {
+    .banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner-text {
+        max-width: 100%;
+    }
+}
+/* Fuente moderna tipo SaaS */
+html, body, [class*="css"]  {
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+section.main {
+    background-color: #f7f9fc;
+}
+
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+h2 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+h3 {
+    color: #1a7f5a;
+    font-weight: 600;
+}
+
+p {
+    color: #555;
+    line-height: 1.6;
+}
+
+
+.banner-fix {
+    padding: 60px 40px;
+    border-radius: 20px;
+    background: radial-gradient(circle at top left, #ffffff, #eef4fb);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+}
