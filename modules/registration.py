@@ -3,25 +3,25 @@ import streamlit as st
 from supabase_client import supabase
 
 def registration_screen():
-    st.title("interactive training platform")
-    st.header("Initial registration")
+    st.title("Plataforma de entrenamiento interactivo")
+    st.header("Registro inicial")
 
     if "user" in st.session_state:
         name = st.session_state["user"]["name"]
-        st.success(f"Welcome {name}, your registration was successful.")
-        st.write("Click below to begin training.")
+        st.success(f"Bienvenido {name}, te has registrado con exito")
+        st.write("Haz click acontinuación para comenzar el entrenamiento")
 
-        if st.button("Begin training"):
+        if st.button("Comenzar"):
             st.session_state["start"] = True
             st.rerun()
 
     else:
         with st.form("user_registration"):
-            name = st.text_input("Full name")
+            name = st.text_input("Nombre completo")
             email = st.text_input("Email")
-            position = st.text_input("Position")
-            company = st.text_input("Company")
-            submitted = st.form_submit_button("Save and continue")
+            position = st.text_input("Posición")
+            company = st.text_input("Nombre de la empresa")
+            submitted = st.form_submit_button("Guardar y continuar")
 
         if submitted:
             if name and email and position:
@@ -40,7 +40,7 @@ def registration_screen():
                 
                 if existing_user.data:
                             # ✅ YA EXISTE → NO INSERTAR
-                            st.warning("This user is already registered")
+                            st.warning("Este usuario ya esta registrado")
 
                             # usar el usuario existente
                             st.session_state["user"] = existing_user.data[0]
@@ -51,11 +51,11 @@ def registration_screen():
                             supabase.table("users").insert(user).execute()
 
                             st.session_state["user"] = user
-                            st.success("User registered successfully")
+                            st.success("Usuario registrado con exito")
 
                 st.rerun()
 
                 #save_in_csv(user, "users.csv")
 
             else:
-                st.error("Please complete all required fields.")
+                st.error("Por favor complete los campos")

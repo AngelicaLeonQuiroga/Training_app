@@ -51,14 +51,14 @@ if "initial_quiz_done" not in st.session_state:
 
 # --------- SIDEBAR ---------
 with st.sidebar:
-    st.title("Training Platform")
+    st.title("Plataforma de entrenamiento")
 
     if "user" in st.session_state:
         st.success(f"👤 {st.session_state['user']['name']}")
     # -------- NAVIGATION --------
-    st.markdown("### Navigation")
+    st.markdown("### Navegación")
 
-    if st.button("🏠 Home"):
+    if st.button("🏠 Inicio"):
         st.session_state["selected_training"] = None
         st.session_state.pop("training_step", None)
         st.session_state.pop("course_name", None)
@@ -90,7 +90,7 @@ with st.sidebar:
         # ✅ PROGRESO
         progress = get_progress()
         st.progress(progress)
-        st.caption(f"{int(progress * 100)}% completed")
+        st.caption(f"{int(progress * 100)}% completado")
 
 
 # --------- FLUJO PRINCIPAL ---------

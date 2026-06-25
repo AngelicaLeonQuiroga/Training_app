@@ -1,8 +1,8 @@
 import streamlit as st
 
 def final_screen():
-    st.title("Training completed 🎉")
-    st.success("Thank you for completing the cybersecurity training.")
-    if st.button("Continue"):
+    st.title("Entrenamiento completado!")
+    st.success("Gracias por completar nuestro entrenamiento.")
+    if st.button("Continuar"):
             st.session_state["training_step"] = "quiz2"
             st.rerun()

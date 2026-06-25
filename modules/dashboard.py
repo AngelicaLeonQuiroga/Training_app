@@ -58,7 +58,7 @@ def get_level(score):
 
 def dashboard():
     load_dashboard_css()
-    st.title("📊 Training Dashboard")
+    st.title("📊 Dashboard de entrenamiento")
 
     # -------- LOAD DATA --------
     #df_pre = load_csv("data/initial_quiz.csv")
@@ -120,16 +120,16 @@ def dashboard():
         total_users = merged["user"].nunique()
 
         with col1:
-            card("📊 Pre Avg", pre_avg)
+            card("📊 Promedio antes del entrenamiento", pre_avg)
 
         with col2:
-            card("📈 Post Avg", post_avg)
+            card("📈 Promedio despues del entrenamiento", post_avg)
 
         with col3:
-            card("🚀 Improvement", improvement)
+            card("🚀 Mejora", improvement)
 
         with col4:
-            card("👥 Total Users", total_users)
+            card("👥 Total usuarios", total_users)
 
         st.markdown("")
 
@@ -138,7 +138,7 @@ def dashboard():
     
     with st.container(border=True):
 
-        st.markdown("### 📉 Improvement Distribution (Delta)")
+        st.markdown("### 📉 Impacto del entrenamiento")
 
 
         # Contar valores directamente
@@ -157,8 +157,8 @@ def dashboard():
         # Mostrar gráfico
         
         chart = alt.Chart(hist_df).mark_bar().encode(
-            x=alt.X("Delta:N", title="Score Improvement (Post - Pre)"),
-            y=alt.Y("Count:Q", title="Number of Students"),
+            x=alt.X("Delta:N", title="Puntaje de mejora (Post - Pre)"),
+            y=alt.Y("Count:Q", title="Numero de estudiantes"),
             tooltip=["Delta", "Count"]
         )
 
@@ -166,7 +166,7 @@ def dashboard():
 
         avg_delta = merged["improvement"].mean()
 
-        st.info(f"📊 Average improvement: {avg_delta:.2f} points")
+        st.info(f"📊 Promedio de mejora: {avg_delta:.2f} points")
 
         # -------- QUICK INSIGHTS --------
         total = len(merged)
@@ -175,17 +175,17 @@ def dashboard():
         same = (merged["improvement"] == 0).sum()
         worse = (merged["improvement"] < 0).sum()
 
-        st.markdown("### 🔍 Insights")
+        st.markdown("### 🔍 Analisis de perspectiva")
 
         col1, col2, col3 = st.columns(3)
         with col1:
-            card("✅ Improved", f"{(improved/total)*100:.1f}%")
+            card("✅ Mejoro", f"{(improved/total)*100:.1f}%")
 
         with col2:
-            card("➖ No Change", f"{(same/total)*100:.1f}%")
+            card("➖ No tuvo cambios", f"{(same/total)*100:.1f}%")
 
         with col3:
-            card("⚠️ Decreased", f"{(improved/total)*100:.1f}%")
+            card("⚠️ Disminuyo", f"{(improved/total)*100:.1f}%")
         st.markdown("")
         
     # 📊 SEGMENTACIÓN POR NIVELES
@@ -193,7 +193,7 @@ def dashboard():
     
     with st.container(border=True):
 
-        st.markdown("### 📊 Performance by Level")
+        st.markdown("### 📊 Segmentación por niveles")
 
 
         merged["pre_level"] = merged["score_pre"].apply(get_level)
@@ -221,8 +221,8 @@ def dashboard():
         with col1:
             st.markdown("")
             chart_levels = alt.Chart(levels_melted).mark_bar().encode(
-            x=alt.X("Level:N", title="Performance Level"),
-            y=alt.Y("Count:Q", title="Number of Students"),
+            x=alt.X("Level:N", title="Nivel de rendimiento"),
+            y=alt.Y("Count:Q", title="Número de estudiantes"),
             color=alt.Color("Type:N",
                 scale=alt.Scale(domain=["Pre", "Post"], range=["#3498db", "#2ecc71"])
             ),
@@ -237,35 +237,34 @@ def dashboard():
 
             high_pre = levels_df.loc[levels_df["Level"] == "High", "Pre"].values[0]
             high_post = levels_df.loc[levels_df["Level"] == "High", "Post"].values[0]
-            card("🔻 Low Reduction", int(low_pre - low_post))
+            card("Estudiantes que salieron del nivel bajo", int(low_pre - low_post))
             st.markdown("")
-            card("🚀 High Increase", int(high_post - high_pre))
+            card("Estudiantes que alcanzaron el nivel alto", int(high_post - high_pre))
             st.markdown("")
-            with st.expander("📘 What do these levels mean?"):
+            with st.expander("📘 Que significan los niveles?"):
                 
                 st.markdown("""
-            ### Performance Levels Explained
+            ### Explicacion de los niveles de rendimiento
 
-            - 🔴 **Low (0–6)**  
-            Learners have limited understanding and may struggle with key concepts.
+            - 🔴 **Low - Bajo (0–6)**  
+            Tienen una comprensión limitada y pueden tener dificultades con conceptos clave.
+                            
+            - 🟡 **Medium - medio (7–10)**  
+            Comprenden los conceptos básicos, pero aún tienen margen de mejora.
 
-            - 🟡 **Medium (7–10)**  
-            Learners understand the basics but still have room to improve.
-
-            - 🟢 **High (11–16)**  
-            Learners demonstrate strong knowledge and are ready to apply what they learned.
-
+            - 🟢 **High - Alto (11–16)**  
+            demuestran un sólido conocimiento y están preparados para aplicar lo que han aprendido.
             ---
 
-            🎯 **Training Goal:**  
-            Increase the number of students in *High* and reduce *Low*.
+            🎯 **Meta de nuestro entrenamieto:**  
+            Incrementar el numero de estudiantes en *Alto* y reducir *Bajo*.
             """)
 
     # -------- LEARNING PREFERENCES --------
     # -------- LEARNING INSIGHTS (PRE ONLY) --------
-    st.header("🎯 Learning Insights")
+    st.header("🎯 Perspectivas de aprendizaje")
 
-    st.markdown("### 🧠 Preferred Learning Format")
+    st.markdown("### 🧠 Formato de aprendizaje preferido")
 
     # total usuarios
     total_pre = df_pre.shape[0]
@@ -280,12 +279,12 @@ def dashboard():
 
     for option, count in pre_counts.items():
         data.append({
-            "Answer": option,
-            "Users": int(count),
-            "% of Users": round((count / total_pre) * 100, 1) if total_pre > 0 else 0
+            "Pregunta": option,
+            "# usuarios": int(count),
+            "% de usuarios": round((count / total_pre) * 100, 1) if total_pre > 0 else 0
         })
 
-    df_learning = pd.DataFrame(data).sort_values(by="% of Users", ascending=False)
+    df_learning = pd.DataFrame(data).sort_values(by="% de usuarios", ascending=False)
 
     # mostrar tabla
     st.dataframe(df_learning, use_container_width=True)
@@ -312,32 +311,32 @@ def dashboard():
     df_questions_sorted = df_questions.sort_values(by="Improvement", ascending=False) 
     top_question = df_questions_sorted.iloc[0]
     worst_question = df_questions_sorted.iloc[-1]
-    st.markdown("### 🧠 Key Insights by Question")
+    st.markdown("### 🧠 Resumen de preguntas")
 
     col1, col2 = st.columns(2)
 
     with col1:
         st.success(f"""
-        🚀 **Top Improvement**
+        🚀 **Mas usuarios acertaron**
         
         **{top_question['Question']}**
         
-        Improvement: **{top_question['Improvement']:.2f}**
+        Puntos de mejora: **{top_question['Improvement']:.2f}**
         """)
 
     with col2:
         st.error(f"""
-        ⚠️ **Needs Attention**
+        ⚠️ **Menos usuarios acertaron**
         
         **{worst_question['Question']}**
         
-        Improvement: **{worst_question['Improvement']:.2f}**
+        Puntos de mejora: **{worst_question['Improvement']:.2f}**
         """)
 
 # -------- TRAINING EFFECTIVENESS SUMMARY --------
     with st.container(border=True):
 
-        st.markdown("### ✅ Training Summary")
+        st.markdown("### ✅ Resumen del entrenamiento")
 
         total = len(merged)
         improved = (merged["improvement"] > 0).sum()
@@ -355,9 +354,9 @@ def dashboard():
         high_post = (merged["score_post"] > 10).sum()
         with col1:
             st.markdown(f"""
-            - 🔻 **{low_pre - low_post} students moved out of low performance**
-            - 🚀 **{high_post - high_pre} students reached high performance**
-            - 📈 **Average improvement:** {merged["improvement"].mean():.2f} points
+            - 🔻 **{low_pre - low_post} Estudiantes que dejaron de tener un bajo rendimiento**
+            - 🚀 **{high_post - high_pre} Estudiantes que alcanzaron alto rendimiento**
+            - 📈 **Promedio de mejoramiento:** {merged["improvement"].mean():.2f} points
 
             """)
             
@@ -365,14 +364,14 @@ def dashboard():
             
             effectiveness_score = (improved / total) * 100
 
-            st.metric("🎯 Training Effectiveness Score", f"{effectiveness_score:.1f}%")
+            st.metric("🎯 Puntuación de eficacia del entrenamiento", f"{effectiveness_score:.1f}%")
         
         # evaluación automática
         if improvement_rate > 70:
-                st.success("✅ Training is highly effective")
+                st.success("⭐  El entrenamiento es altamente eficaz")
         elif improvement_rate > 40:
-                st.warning("⚠️ Training shows moderate effectiveness")
+                st.warning("⚠️ El entrenamiento muestra una eficacia moderada")
         else:
-                st.error("❌ Training effectiveness is low")
+                st.error("❌ La eficacia del entrenamiento es baja")
 
         

@@ -14,8 +14,8 @@ def home_screen():
 
     # Header
     st.markdown("""
-    # 🎓 Training Platform
-    ### Upgrade your skills with interactive modules
+    # Aprenda a su ritmo
+    ### Fortalezca sus conocimientos mediante módulos interactivos y evaluaciones prácticas que le permitirán medir su progreso antes y después de cada entrenamiento.
     """)
 
     st.markdown("---")

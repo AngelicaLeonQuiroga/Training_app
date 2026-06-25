@@ -5,7 +5,7 @@ from datetime import datetime
 
 def initial_quiz_screen():
 
-    st.header("Initial Knowledge Check")
+    st.header("Prueba inicial de conocimientos")
     
     correct_answers = {
         "q4": "Verdadero",
@@ -183,7 +183,7 @@ def initial_quiz_screen():
         )
 
 
-        submitted_quiz = st.form_submit_button("Submit answers")
+        submitted_quiz = st.form_submit_button("Enviar respuestas")
 
     if submitted_quiz:
         
@@ -191,7 +191,7 @@ def initial_quiz_screen():
         if None in [q1, q3, q4, q5, q6, q7, q8, q9, q10,
                     q11, q12, q13, q14, q15, q16, q17, q18, q19] or not q2 or not q3:
             
-            st.error(" Please answer all questions before submitting.")
+            st.error(" Por favor conteste todas la preguntas antes de enviarlas")
             st.stop()
 
         
@@ -231,5 +231,5 @@ def initial_quiz_screen():
         supabase.table("initial_quiz").insert(quiz_data).execute()
 
         st.session_state["initial_quiz_done"] = True
-        st.success("Your answers were submitted successfully.")
+        st.success("Tus respuestas se subieron exitosamente.")
         st.rerun()

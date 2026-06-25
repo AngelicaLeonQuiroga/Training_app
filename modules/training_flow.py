@@ -13,7 +13,7 @@ course_steps = [
     ("quiz3", "Quiz 3"),
     ("video4", "Video 4"),
     ("quiz4", "Quiz 4"),
-    ("completed", "✅ Finished")
+    ("completed", "Finalizado")
 ]
 
 def render_video_module(video_id, completed_key, next_step, module_title):
@@ -25,20 +25,20 @@ def render_video_module(video_id, completed_key, next_step, module_title):
     if not st.session_state[completed_key]:
         # Mostrar el video
         st.video(f"https://youtu.be/{video_id}")
-        st.info("Watch the full video, then click the button to continue.")
+        st.info("Mira el video completo, despues click en continuar")
         st.markdown("---")
 
         #st.markdown("<br><br>", unsafe_allow_html=True)
         # Botón manual para continuar
-        if st.button("I finished watching the video"):
+        if st.button("Continuar"):
             st.session_state[completed_key] = True
             st.rerun()
 
     else:
-        st.success("Video completed ✅")
+        st.success("Video completado")
         st.markdown("---")
         #st.markdown("<br><br>", unsafe_allow_html=True)
-        if st.button("Continue to Quiz"):
+        if st.button("Continue al Quiz"):
             st.session_state[completed_key] = False
             
             st.session_state["training_step"] = next_step
@@ -82,7 +82,7 @@ def training_flow():
     with sidebar_col:
         if st.session_state["sidebar_open"]:
 
-            st.markdown("### 📚 Course Progress")
+            st.markdown("### 📚 Progreso del curso")
 
             step_keys = [s[0] for s in course_steps]
 
@@ -96,7 +96,7 @@ def training_flow():
 
     #principal
     with main_col:
-        st.title("Training in progress")
+        st.title("Entrenamiento en progreso")
 
         # -------- VIDEO1 --------
         if step == "video1":
@@ -104,7 +104,7 @@ def training_flow():
                 video_id="x70OzqxE7cU",
                 completed_key="video1_completed",
                 next_step="quiz1",
-                module_title="Module 1 – Tipos de extintor"
+                module_title="Módulo 1 – Tipos de extintores"
 
         )
             # -------- QUIZ 1 --------
@@ -148,13 +148,13 @@ def training_flow():
                     "No sé "],index=None
                 )
 
-                submit = st.form_submit_button("Submit")
+                submit = st.form_submit_button("Enviar")
 
                 if submit:
                     
                 # VALIDACIÓN
                     if None in [q1, q2, q3, q4]:
-                        st.error("Please answer all questions before continuing.")
+                        st.error("Porfavor conteste todas las preguntas antes de continuar.")
                         st.stop()
 
                     answers = {"q1": q1, "q2": q2,
@@ -172,7 +172,7 @@ def training_flow():
                 video_id="hLVi2kESqn8",
                 completed_key="video2_completed",
                 next_step="quiz2",
-                module_title="Module 2 – Tipos de extintor"
+                module_title="Módulo 2 – Como usar un extintor de incendios"
         )
         # -------- QUIZ 2 --------
         elif step == "quiz2":
@@ -208,12 +208,12 @@ def training_flow():
                     "No sé "],index=None
                 )
 
-                submit = st.form_submit_button("Submit")
+                submit = st.form_submit_button("Enviar")
 
                 if submit:
                     
                     if None in [q5, q6, q7]:
-                            st.error(" Please answer all questions before continuing.")
+                            st.error("Porfavor conteste todas las preguntas antes de continuar.")
                             st.stop()
 
                     answers = {"q5": q5, "q6": q6, "q7": q7}
@@ -232,7 +232,7 @@ def training_flow():
                 video_id="-R59pwJLp6k",
                 completed_key="video3_completed",
                 next_step="quiz3",
-                module_title="Module 3 – Tipos de extintor"
+                module_title="Módulo 3 – Prevención de riesgos"
         )
         # -------- QUIZ 3 --------
         elif step == "quiz3":
@@ -269,12 +269,12 @@ def training_flow():
                     "No sé "],index=None
                 )
 
-                submit = st.form_submit_button("Submit")
+                submit = st.form_submit_button("Enviar")
 
                 if submit:
                     #validation vacio
                     if None in [q8, q9, q10]:
-                            st.error("Please answer all questions before continuing.")
+                            st.error("Porfavor conteste todas las preguntas antes de continuar.")
                             st.stop()
 
                     answers = {"q8": q8, "q9": q9, "q10": q10}
@@ -293,7 +293,7 @@ def training_flow():
                 video_id="oLbjn2DfLDY",
                 completed_key="video4_completed",
                 next_step="quiz4",
-                module_title="Module 4 – Tipos de extintor"
+                module_title="Módulo 4 – Cuidados que debes tener cuenta sobre incendios en tu hogar"
         )
         # -------- QUIZ 4 --------
         elif step == "quiz4":
@@ -355,12 +355,12 @@ def training_flow():
                     "Buscar tus cosas antes de salir",
                     "No sé "],index=None
                 )
-                submit = st.form_submit_button("Submit")
+                submit = st.form_submit_button("Enviar")
 
                 if submit:
                       #validacion vacio                  
                     if None in [q11, q12, q13, q14, q15, q16]:
-                            st.error("Please answer all questions before continuing.")
+                            st.error("Porfavor conteste todas las preguntas antes de continuar.")
                             st.stop()
 
                     answers = {"q11": q11, "q12": q12, "q13": q13,
@@ -377,7 +377,7 @@ def training_flow():
 
         # -------- COMPLETED --------
         elif step == "completed":
-                st.header("Training completed 🎉")
+                st.header("Entrenamiento completado!")
                 # ✅ GUARDAR POST COMPLETO
                 answers = st.session_state.get("post_answers", {})
                 results = st.session_state.get("post_results", {})
@@ -433,14 +433,14 @@ def training_flow():
                     minutes = int(duration // 60)
                     seconds = int(duration % 60)
 
-                    st.info(f"⏱ Total time: {minutes} min {seconds} sec")
+                    st.info(f"⏱ Tiempo total: {minutes} min {seconds} sec")
 
-                st.success("You have finished this module. Thank you!")
+                st.success("Acabas de finalizar, muchas gracias.")
                 
                 st.markdown("---")
                 col1, col2, col3 = st.columns([1,2,1])
                 with col2:
-                        if st.button("Back to Home / View More Courses"):
+                        if st.button("Volver al inicio para ver más cursos"):
                             
                             # Reset del flujo
                             st.session_state.pop("training_step", None)
