@@ -37,11 +37,10 @@ def initial_quiz_screen():
             index=None
         )
 
-        q2 = st.radio(
+        q2 = st.multiselect(
             "2. Si has recibido un entrenamiento, ¿de quién lo has recibido?",
             ["Compañías externas que vienen al trabajo ", "Programas de extension de la universidad", 
              "Internet","Videos en la granja","Otro","Nunca he recibido entrenamientos"],
-             index=None
         )
 
         q3 = st.radio(
@@ -189,8 +188,8 @@ def initial_quiz_screen():
     if submitted_quiz:
         
         # VALIDACIÓN GLOBAL
-        if None in [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
-                    q11, q12, q13, q14, q15, q16, q17, q18, q19]:
+        if None in [q1, q3, q4, q5, q6, q7, q8, q9, q10,
+                    q11, q12, q13, q14, q15, q16, q17, q18, q19] or not q2:
             
             st.error(" Please answer all questions before submitting.")
             st.stop()
