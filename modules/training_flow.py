@@ -121,21 +121,21 @@ def training_flow():
 
             with st.form("quiz1_form"):
                 q1 = st.radio(
-                    "1. Verdadero o Falso: Existen diferentes clases de incendio (A, B, C, D) según lo que se quema, y un mismo extintor no sirve para todas. Por eso se usan los extintores ABC, que cubren las clases más comunes.",
+                    "1. Responda Verdadero o Falso: Existen diferentes clases de incendio (A, B, C, D) según lo que se quema, y un mismo extintor no sirve para todas. Por eso se usan los extintores ABC, que cubren las clases más comunes.",
                     ["Verdadero", "Falso", "No sé "],index=None
                 )
                 q2 = st.radio(
                     "2. ¿Qué tipos de fuego puede apagar un extintor ABC? ",
                     ["Materiales comunes como madera y papel (A), líquidos inflamables como aceite o gasolina (B) y equipos eléctricos (C) ",
-                    "Solo fuegos electricos", "Solo fuegos de papel y madera",
+                    "Solo fuegos eléctricos", "Solo fuegos de papel y madera",
                     "Sirve para todos los fuegos, incluidos los de metales",
                     "No sé "],index=None
                 )
                 q3 = st.radio(
                     "3. ¿Por qué una pila de heno húmedo o de estiércol puede incendiarse sola, sin chispa ni llama?",
-                    ["Porque el calor se acumula por dentro y enciende el material (combustión espontánea)",
-                    "Porque el sol la calienta por fuera",
+                    ["Porque el sol la calienta por fuera",
                     "Porque el viento la enciende",
+                    "Porque el calor se acumula por dentro y enciende el material (combustión espontánea)",
                     "El heno y el estiércol nunca se incendian solos ",
                         "No sé "],index=None
                 )
@@ -143,7 +143,7 @@ def training_flow():
                     "4. En la sala de descanso comienza a incendiarse un papel dentro de un basurero. ¿Qué debo hacer?",
                     ["Poner mucha agua hasta apagarlo completamente",
                     "Usar un extintor ABC",
-                    "Cubrir el basurero para que el agua se apague",
+                    "Cubrir el basurero para que el fuego se apague",
                     "No usar ningun extintor ",
                     "No sé "],index=None
                 )
@@ -187,10 +187,10 @@ def training_flow():
             with st.form("quiz2_form"):
                 q5 = st.radio(
                     "5. ¿Cómo puede saber si un extintor está cargado y listo para usarse?",
-                    ["Revisando el manómetro (medidor de presión): la aguja debe estar en la zona verde",
-                    "Agitándolo para escuchar si tiene polvo",
-                    "Por el color rojo del extintor",
+                    ["Agitándolo para escuchar si tiene polvo",
+                    "Por la etiqueta de mantenimiento",
                     "No se puede saber hasta que se usa ",
+                    "Revisando el manómetro (medidor de presión): la aguja debe estar en la zona verde",
                     "No sé "],index=None
                 )
                 q6 = st.radio(
@@ -198,11 +198,11 @@ def training_flow():
                     ["Hacia la parte más alta de las llamas ",
                     "Hacia el humo",
                     "Hacia la base del fuego ",
-                    "Hacia cualquier para del incendio lo importante es actuar ",
+                    "Hacia cualquier sitio del incendio, lo importante es actuar ",
                     "No sé "],index=None
                 )
                 q7 = st.radio(
-                    "7. Verdadero o Falso: Debo barrer el fuego moviendo la manguera de lado a lado. ",
+                    "7. Responda Verdadero o Falso: Para apagar un incendio debo barrer el fuego moviendo la manguera de lado a lado. ",
                     ["Verdadero ",
                     "Falso",
                     "No sé "],index=None
@@ -239,7 +239,7 @@ def training_flow():
             st.header("Quiz 3")
             
             correct_answers = {
-                    "q8": "Reportarlo inmediatamente al supervisor y seguir trabajando ",
+                    "q8": "Reportarlo inmediatamente al supervisor y reemplazarlo por un extintor nuevo para luego seguir trabajando ",
                     "q9": "Mantener limpia la maquinaria (ej., radiador, motor) y las áreas de trabajo ",
                     "q10": "Polvo, paja y materiales secos (ej., hojas secas) "
                 }
@@ -247,7 +247,7 @@ def training_flow():
                 q8 = st.radio(
                     "8. ¿Qué debes hacer si el extintor del tractor no está presente o el indicador de presión está en rojo? ",
                     ["Ignorarlo y seguir trabajando  ",
-                    "Reportarlo inmediatamente al supervisor y seguir trabajando ",
+                    "Reportarlo inmediatamente al supervisor y reemplazarlo por un extintor nuevo para luego seguir trabajando ",
                     "Guardar el tractor en el establo ",
                     "Esperar al siguiente turno  ",
                     "No sé "],index=None
@@ -262,7 +262,7 @@ def training_flow():
                 )
                 q10 = st.radio(
                     "10. ¿Qué materiales pueden acumularse en el compartimento del motor y aumentar el riesgo de incendio? ",
-                    ["Agua, barro, paja y materiales secos ",
+                    ["Agua, barro, paja y materiales secos (ej., hojas secas) ",
                     "Polvo, paja y materiales secos (ej., hojas secas) ",
                     "Aceite limpio y herramientas ",
                     "Arena, piedras y polvo ",
@@ -300,11 +300,10 @@ def training_flow():
             st.header("Quiz 4")
             
             correct_answers = {
-                    "q11": "Apagar la estufa y cubrir el recipiente con una tapa metálica o un trapo grueso ligeramente húmedo",
+                    "q11": "Apagar la estufa/fogón y cubrir el recipiente con una tapa metálica o un trapo grueso ligeramente húmedo",
                     "q12": "Mantener objetos inflamables lejos de fuentes de calor ",
                     "q13": "Verdadero",
                     "q14": "Todas las anteriores",
-                    "q15": "Revisando el manómetro (medidor de presión): la aguja debe estar en la zona verde",
                     "q16": "Salir de inmediato, avisar a los demás y llamar al 911"
                 }
 
@@ -313,7 +312,7 @@ def training_flow():
                     "11. ¿Qué se debe hacer si ocurre un fuego causado por aceite o grasa mientras se cocina? ",
                     ["Arrojar agua inmediatamente ",
                     "Abrir ventanas y dejar el fuego solo ",
-                    "Apagar la estufa y cubrir el recipiente con una tapa metálica o un trapo grueso ligeramente húmedo",
+                    "Apagar la estufa/fogón y cubrir el recipiente con una tapa metálica o un trapo grueso ligeramente húmedo",
                     "Mover la sartén rápidamente al fregadero",
                     "No sé "],index=None
                 )
@@ -322,33 +321,25 @@ def training_flow():
                     ["Dejar veladoras encendidas durante la noche",
                     "Mantener objetos inflamables lejos de fuentes de calor ",
                     "Usar un solo enchufe eléctrico para conectar varios electrodomésticos a la vez ",
-                    "Dejar toallas cerca de la estufa mientras se cocina  ",
+                    "Dejar toallas cerca de la estufa/fogón mientras se cocina  ",
                     "No sé "],index=None
                 )
                 q13 = st.radio(
-                    "13. Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio.",
+                    "13. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio.",
                     ["Verdadero",
                     "Falso",
                     "No sé "],index=None
                 )
                 q14 = st.radio(
-                    "14. ¿Cómo sabe que el fuego es demasiado peligroso y debe dejar de apagarlo y salir de inmediato?",
+                    "14. ¿Cómo se sabe que el fuego es demasiado peligroso, cuando se debe dejar de apagarlo y cuando salir de inmediato?",
                     ["El fuego es más alto que usted o más grande que un basurero",
                     "El humo está llenando el cuarto y cuesta respirar o ver ",
                     "El fuego está entre usted y la salida",
                     "Todas las anteriores",
                     "No sé "],index=None
                 )
-                q15 = st.radio(
-                    "15. ¿Cómo puede saber si un extintor está cargado y listo para usarse?",
-                    ["Revisando el manómetro (medidor de presión): la aguja debe estar en la zona verde",
-                    "Agitándolo para escuchar si tiene polvo",
-                    "Por el color rojo del extintor",
-                    "No se puede saber hasta que se usa ",
-                    "No sé "],index=None
-                )
                 q16 = st.radio(
-                    "16. ¿Qué debes hacer si el fuego es grande y no puedes controlarlo con el extintor?",
+                    "15. ¿Qué debes hacer si el fuego es grande y no puedes controlarlo con el extintor?",
                     [" Seguir intentando apagarlo tú solo",
                     "Salir de inmediato, avisar a los demás y llamar al 911",
                     "Esconderte dentro del establo",
@@ -359,12 +350,12 @@ def training_flow():
 
                 if submit:
                       #validacion vacio                  
-                    if None in [q11, q12, q13, q14, q15, q16]:
+                    if None in [q11, q12, q13, q14, q16]:
                             st.error("Porfavor conteste todas las preguntas antes de continuar.")
                             st.stop()
 
                     answers = {"q11": q11, "q12": q12, "q13": q13,
-                               "q14": q14, "q15": q15, "q16": q16}
+                               "q14": q14, "q16": q16}
                     results = {}
                     score = 0
                     
@@ -377,6 +368,28 @@ def training_flow():
 
         # -------- COMPLETED --------
         elif step == "completed":
+                user_email = st.session_state["user"]["email"]
+
+                # traer datos de supabase
+                pre_response = supabase.table("initial_quiz") \
+                    .select("*") \
+                    .eq("user", user_email) \
+                    .order("timestamp", desc=True) \
+                    .limit(1) \
+                    .execute()
+
+                post_response = supabase.table("post_test") \
+                    .select("*") \
+                    .eq("user", user_email) \
+                    .order("timestamp", desc=True) \
+                    .limit(1) \
+                    .execute()
+                
+                pre_score = pre_response.data[0]["score"] if pre_response.data else 0
+                post_score = post_response.data[0]["score"] if post_response.data else 0
+
+                improvement = post_score - pre_score
+
                 st.header("Entrenamiento completado!")
                 # ✅ GUARDAR POST COMPLETO
                 answers = st.session_state.get("post_answers", {})
@@ -437,6 +450,40 @@ def training_flow():
 
                 st.success("Acabas de finalizar, muchas gracias.")
                 
+                st.markdown("---")
+                st.subheader("Tus resultados")
+
+                col1, col2, col3 = st.columns(3)
+
+                with col1:
+                    st.metric("🧠 Antes del entrenamiento", pre_score)
+
+                with col2:
+                    st.metric("🚀 Después del entrenamiento", post_score)
+
+                with col3:
+                    st.metric("📈 Mejora", improvement)
+
+                if improvement > 3:
+                    st.success("⭐ Excelente progreso! Has mejorado significativamente tus conocimientos.")
+
+                elif improvement > 0:
+                    st.info("👍 Buen trabajo! Has mejorado, pero aún puedes seguir aprendiendo.")
+
+                elif improvement == 0:
+                    
+                    if post_score >= 12:
+                        st.success("🎯 Excelente! Ya tenías un alto nivel desde el inicio y lo mantuviste.")
+
+                    elif post_score >= 8:
+                        st.info("✔️ Mantienes un nivel adecuado, pero podrías mejorar con más práctica.")
+
+                    else:
+                        st.warning("⚠️ No hubo mejora. Te recomendamos revisar nuevamente el entrenamiento.")
+
+                else:
+                    st.error("⚠️ Tu puntaje disminuyó. Considera repetir el entrenamiento.")
+
                 st.markdown("---")
                 col1, col2, col3 = st.columns([1,2,1])
                 with col2:

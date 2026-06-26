@@ -45,15 +45,15 @@ def home_screen():
 
         st.markdown(f"""
         <div class="card clickable">
-            <h3>Fire Safety Training</h3>
+            <h3>Seguridad contra incendios</h3>
             <img src="data:image/png;base64,{img_fire}" />
-            <p>Learn how to use extinguishers and prevent fires.</p>
+            <p>Aprende a prevenir incendios y usar extintores.</p>
         </div>
         """, unsafe_allow_html=True)
         st.markdown("---")
-        if st.button("Start", key="fire", use_container_width=True):
+        if st.button("Comenzar", key="fire", use_container_width=True):
                     st.session_state["selected_training"] = "fire"
-                    st.session_state["course_name"] = "Fire Safety Training"
+                    st.session_state["course_name"] = "Seguridad contra incendios"
                 # GUARDAR HORA DE INICIO
                     st.session_state["training_start_time"] = datetime.now()
 

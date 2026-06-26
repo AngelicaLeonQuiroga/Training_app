@@ -70,6 +70,7 @@ def dashboard():
 
     df_pre = pd.DataFrame(response_pre.data)
     df_post = pd.DataFrame(response_post.data)
+    df_pre_full = df_pre.copy()
 
     if df_pre.empty or df_post.empty:
         st.warning("No data available yet.")
@@ -267,10 +268,16 @@ def dashboard():
     st.markdown("### 🧠 Formato de aprendizaje preferido")
 
     # total usuarios
-    total_pre = df_pre.shape[0]
     
-    # ✅ EXPLODE MULTISELECT
-    df_q3 = df_pre.explode("q3")
+    total_pre = df_pre_full["user"].nunique()
+
+    df_q3 = df_pre_full.explode("q3")
+    
+    # evita duplicados por usuario
+    df_q3 = df_q3.drop_duplicates(subset=["user", "q3"])
+
+    total_pre = df_pre_full["user"].nunique()
+
 
     # contar respuestas
     pre_counts = df_q3["q3"].value_counts()
