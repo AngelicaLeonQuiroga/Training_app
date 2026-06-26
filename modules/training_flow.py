@@ -370,33 +370,13 @@ def training_flow():
         elif step == "completed":
                 user_email = st.session_state["user"]["email"]
 
-                # traer datos de supabase
-                pre_response = supabase.table("initial_quiz") \
-                    .select("*") \
-                    .eq("user", user_email) \
-                    .order("timestamp", desc=True) \
-                    .limit(1) \
-                    .execute()
-
-                post_response = supabase.table("post_test") \
-                    .select("*") \
-                    .eq("user", user_email) \
-                    .order("timestamp", desc=True) \
-                    .limit(1) \
-                    .execute()
-                
-                pre_score = pre_response.data[0]["score"] if pre_response.data else 0
-                post_score = post_response.data[0]["score"] if post_response.data else 0
-
-                improvement = post_score - pre_score
-
                 st.header("Entrenamiento completado!")
                 # ✅ GUARDAR POST COMPLETO
                 answers = st.session_state.get("post_answers", {})
                 results = st.session_state.get("post_results", {})
 
                 if answers and results:
-                    score = sum(results.values())
+                    score = sum(v for v in results.values() if v is True)
 
                     post_data = {
                             "user": st.session_state["user"]["email"],  # FIX
@@ -409,8 +389,7 @@ def training_flow():
                         }
                     
                     #  GUARDAR EN SUPABASE
-                    supabase.table("post_test").insert(post_data).execute()
-
+                    supabase.table("post_test").insert(post_data).execute()                    
                     # ✅ limpiar datos después de guardar
                     st.session_state["post_answers"] = {}
                     st.session_state["post_results"] = {}
@@ -448,42 +427,8 @@ def training_flow():
 
                     st.info(f"⏱ Tiempo total: {minutes} min {seconds} sec")
 
-                st.success("Acabas de finalizar, muchas gracias.")
+                st.success("Acabas de finalizar, puedes ir a dashboard para ver tus resultados. Muchas gracias.")
                 
-                st.markdown("---")
-                st.subheader("Tus resultados")
-
-                col1, col2, col3 = st.columns(3)
-
-                with col1:
-                    st.metric("🧠 Antes del entrenamiento", pre_score)
-
-                with col2:
-                    st.metric("🚀 Después del entrenamiento", post_score)
-
-                with col3:
-                    st.metric("📈 Mejora", improvement)
-
-                if improvement > 3:
-                    st.success("⭐ Excelente progreso! Has mejorado significativamente tus conocimientos.")
-
-                elif improvement > 0:
-                    st.info("👍 Buen trabajo! Has mejorado, pero aún puedes seguir aprendiendo.")
-
-                elif improvement == 0:
-                    
-                    if post_score >= 12:
-                        st.success("🎯 Excelente! Ya tenías un alto nivel desde el inicio y lo mantuviste.")
-
-                    elif post_score >= 8:
-                        st.info("✔️ Mantienes un nivel adecuado, pero podrías mejorar con más práctica.")
-
-                    else:
-                        st.warning("⚠️ No hubo mejora. Te recomendamos revisar nuevamente el entrenamiento.")
-
-                else:
-                    st.error("⚠️ Tu puntaje disminuyó. Considera repetir el entrenamiento.")
-
                 st.markdown("---")
                 col1, col2, col3 = st.columns([1,2,1])
                 with col2:

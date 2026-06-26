@@ -60,11 +60,14 @@ def dashboard():
     load_dashboard_css()
     st.title("📊 Dashboard de entrenamiento")
 
-    # -------- LOAD DATA --------
-    #df_pre = load_csv("data/initial_quiz.csv")
-    #df_post = load_csv("data/post_test.csv")
+    user_email = None
 
-    
+    if "user" in st.session_state:
+        user_email = str(st.session_state["user"]["email"]).strip().lower()
+    else:
+        st.info("")
+
+    #st.write(st.session_state)
     response_pre = supabase.table("initial_quiz").select("*").execute()
     response_post = supabase.table("post_test").select("*").execute()
 
@@ -102,7 +105,10 @@ def dashboard():
         st.write("PRE users:", df_pre["user"].tolist())
         st.write("POST users:", df_post["user"].tolist())
         return
-
+    if user_email:
+        user_data = merged[merged["user"] == user_email]
+    else:
+        user_data = pd.DataFrame()  # vacío
 
     # -------- SCORES --------
     merged["improvement"] = merged["score_post"] - merged["score_pre"]
@@ -111,6 +117,42 @@ def dashboard():
     # -------- KPIs --------
     with st.container(border=True):
         
+        st.markdown("## 👤 Tu rendimiento personal")
+        
+        if not user_data.empty:
+
+            user_pre = user_data["score_pre"].iloc[0]
+            user_post = user_data["score_post"].iloc[0]
+            user_improvement = user_post - user_pre
+
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                card("Antes", user_pre)
+
+            with col2:
+                card("Después", user_post)
+
+            with col3:
+                card("📈 Mejora", user_improvement)
+            st.markdown("")
+            # 🔥 Interpretación
+            if user_improvement > 3:
+                st.success("⭐ Excelente progreso!")
+            elif user_improvement > 0:
+                st.info("👍 Buen avance!")
+            elif user_improvement == 0:
+                if user_post >= 12:
+                    st.success("🎯 Ya tenías un nivel alto.")
+                else:
+                    st.warning("⚠️ No hubo mejora.")
+            else:
+                st.error("⚠️ Tu puntaje disminuyó.")
+
+        else:
+            st.warning("Inicia sesión y completa el entrenamiento para ver tus resultados personales.")
+
+        st.markdown("---")
         st.markdown("## Overview")
 
         col1, col2, col3, col4 = st.columns(4)
