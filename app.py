@@ -66,7 +66,7 @@ with st.sidebar:
         st.rerun()
 
 
-    if st.button("📊 Dashboard"):
+    if st.button("📊 Panel de control"):
         st.session_state["selected_training"] = "dashboard"
         st.rerun()
 
