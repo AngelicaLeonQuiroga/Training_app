@@ -71,10 +71,10 @@ def initial_quiz_screen():
                 index=None
         )
         q7 = st.radio(
-            "7. En la sala de descanso comienza a incendiarse un papel dentro de un basurero. ¿Qué debo hacer?",
-            ["El agua no me serviria para apagarlo",
+            "7. En la sala de descanso comienza a quemarse papel dentro de un basurero. El fuego es pequeño y tengo una salida segura. ¿Qué debo hacer?",
+            ["Ignorarlo y esperar",
               "Usar un extintor ABC",
-              "Cubrir el basurero para que el fuego se apague",
+              "Cubrir el basurero con cualquier material",
               "No usar ningun extintor ",
               "No sé "],
               index=None
@@ -151,7 +151,7 @@ def initial_quiz_screen():
               index=None
         )
         q16 = st.radio(
-            "16. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio, cuando la termperatura interta incrementa.",
+            "16. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio, cuando la temperatura interna incrementa.",
             ["Verdadero",
               "Falso",
               "No sé "],index=None

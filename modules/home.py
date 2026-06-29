@@ -32,10 +32,10 @@ def home_screen():
             <p class="banner-text p"><img src="data:image/png;base64,{check}"  style="width:20px; margin:10px 0;"/> Consulta tus resultados</p>
         </div>
         </div>""", unsafe_allow_html=True)     
-    st.info("Selecciona un curso abajo 👇")
-    st.info("La narración del video será en español con subtitulos en inglés y las preguntas pueden traducirse al inglés utilizando **Google Translate**, disponible en la esquina superior derecha de la página.")
-    st.info("The video narration will be in Spanish with English subtitles, and the questions can be translated into English using **Google Translate**, available in the top right corner of the page.")
     
+    st.info("La narración del video será en español con subtitulos en inglés y las preguntas pueden traducirse al inglés utilizando **Google Translate**, disponible en la esquina superior derecha de la página")
+    st.info("The video narration will be in Spanish with English subtitles, and the questions can be translated into English using **Google Translate**, available in the top right corner of the page.")
+    st.success("Selecciona un curso abajo 👇")
     st.markdown("---")
 
     st.subheader("Entrenamientos disponibles")
@@ -49,11 +49,11 @@ def home_screen():
         <div class="card clickable">
             <h3>Seguridad contra incendios</h3>
             <img src="data:image/png;base64,{img_fire}" />
-            <p>La capacitación incluye 4 videos cortos, con una duración de 9 minutos aproximadamente. Por favor, reserve 15 minutos para completar toda la capacitación, incluyendo las preguntas.</p>
-            <p>This training includes 4 short videos with a total duration of approximately 9 minutes. Please reserve 15 minutes to complete the full training, including the questions.</p>
         </div>
         """, unsafe_allow_html=True)
-        st.markdown("---")
+        st.markdown("")
+        st.info("La capacitacion incluye 4 videos cortos, con una duración de 9 minutos. Por favor, reserve 15 minutos para completar toda la capacitación, incluyendo las preguntas.")
+        st.success("This training includes 4 short videos with a total duration of approximately 9 minutes. Please reserve 15 minutes to complete the full training. Incluiding the questions.")
         if st.button("Comenzar", key="fire", width="stretch"):
                     st.session_state["selected_training"] = "fire"
                     st.session_state["course_name"] = "Seguridad contra incendios"
