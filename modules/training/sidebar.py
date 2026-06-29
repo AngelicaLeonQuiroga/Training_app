@@ -1,4 +1,6 @@
 import streamlit as st
+from modules.who_we_are import who_we_are
+
 
 def render_sidebar(step, course_steps):
 
@@ -18,7 +20,7 @@ def render_sidebar(step, course_steps):
         st.markdown("---")
         menu = st.radio(
             "Navigation",
-            ["🏠 Home", "📚 Training", "📊 Dashboard"],
+            ["🏠 Home", "📚 Training", "📊 Dashboard", "👥 Quiénes somos"],
             label_visibility="collapsed"
         )
         if menu == "🏠 Home":
@@ -26,13 +28,16 @@ def render_sidebar(step, course_steps):
         
         elif menu == "📊 Dashboard":
             st.session_state["selected_training"] = "dashboard"
+        
+        elif menu == "👥 Quiénes somos":
+            st.session_state["selected_training"] = "about"
 
         st.markdown("---")
 
         # -------- COURSE (solo si NO estás en dashboard) --------
         if (
             "course_name" in st.session_state and
-            st.session_state.get("selected_training") != "dashboard"
+            st.session_state.get("selected_training") not in ["dashboard", "about"]
         ):
 
             st.markdown(f"## 📚 {st.session_state['course_name']}")

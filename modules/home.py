@@ -51,7 +51,7 @@ def home_screen():
         </div>
         """, unsafe_allow_html=True)
         st.markdown("---")
-        if st.button("Comenzar", key="fire", use_container_width=True):
+        if st.button("Comenzar", key="fire", width="stretch"):
                     st.session_state["selected_training"] = "fire"
                     st.session_state["course_name"] = "Seguridad contra incendios"
                 # GUARDAR HORA DE INICIO

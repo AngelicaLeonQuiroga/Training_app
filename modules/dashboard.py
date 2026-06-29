@@ -270,7 +270,7 @@ def dashboard():
     #        tooltip=["Delta", "Count"]
    #     )
 
-        #st.altair_chart(chart, use_container_width=True)
+        #st.altair_chart(chart, width="stretch")
 
        # avg_delta = merged["improvement"].mean()
 
@@ -340,7 +340,7 @@ def dashboard():
             ),
             xOffset="Type:N",
             tooltip=["Level", "Type", "Count"])
-            st.altair_chart(chart_levels, use_container_width=True)
+            st.altair_chart(chart_levels, width="stretch")
 
         with col2:
          # LEVEL INSIGHTS
@@ -394,7 +394,7 @@ def dashboard():
     df_learning = pd.DataFrame(data).sort_values(by="% de usuarios", ascending=False)
 
     # mostrar tabla
-    st.dataframe(df_learning, use_container_width=True)
+    st.dataframe(df_learning, width="stretch")
 
     
     # -------- QUESTIONS --------
@@ -489,6 +489,62 @@ def dashboard():
                     
                     Se recomienda reforzar el contenido del entrenamiento.
                     """)
+
+# =====================================================
+# FEEDBACK DE USUARIO
+# =====================================================
+
+    with st.container(border=True):
+
+        st.markdown("### 💬 Tu opinión")
+
+        st.markdown("""
+        Tu retroalimentación es muy importante para mejorar la plataforma.
+        """)
+
+        # rating 1–5
+        
+        rating_options = {
+            "😞 Mala": 1,
+            "😐 Regular": 2,
+            "🙂 Buena": 3,
+            "😃 Muy buena": 4,
+            "😎 Excelente": 5
+        }
+
+        
+        rating_label = st.radio(
+            "¿Cómo fue tu experiencia?",
+            list(rating_options.keys()),
+            horizontal=True
+        )
+
+        rating = rating_options[rating_label]
+
+
+
+        # comentario
+        comment = st.text_area("Comentarios (opcional)")
+
+        if st.button("Enviar"):
+
+            if "user" in st.session_state:
+                user_email = st.session_state["user"]["email"]
+            else:
+                user_email = "anonimo"
+
+            try:
+                supabase.table("feedback").insert({
+                    "user": user_email,
+                    "rating": rating,
+                    "comment": comment
+                }).execute()
+
+                st.success("✅ ¡Gracias por tu opinion!")
+
+            except Exception as e:
+                st.error("❌ Error al guardar la opinion")
+                st.write(e)
 
 
         

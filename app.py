@@ -5,6 +5,8 @@ from modules.training_flow import training_flow
 from modules.home import home_screen
 from modules.dashboard import dashboard
 from supabase_client import supabase
+from modules.who_we_are import who_we_are
+
 
 
 def load_css():
@@ -70,6 +72,10 @@ with st.sidebar:
         st.session_state["selected_training"] = "dashboard"
         st.rerun()
 
+    if st.button("👥 Quiénes somos"):
+        st.session_state["selected_training"] = "about"
+        st.rerun()
+
     # Curso
     if "course_name" in st.session_state:
 
@@ -99,6 +105,9 @@ with st.sidebar:
 # DASHBOARD (prioridad alta)
 if st.session_state.get("selected_training") == "dashboard":
     dashboard()
+#quienes sommos
+elif st.session_state.get("selected_training") == "about":
+    who_we_are()
 
 # HOME
 elif st.session_state["selected_training"] is None:
