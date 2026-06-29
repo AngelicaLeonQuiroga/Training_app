@@ -62,6 +62,7 @@ El enfoque pedagógico de la plataforma está centrado en el aprendizaje autóno
         st.markdown("""Population Health & Reproduction, School of Veterinary Medicine""")
         st.markdown("""Veterinary Medicine Teaching & Research Center""")
         st.markdown("""University of California, Davis, California""")
+        st.markdown("""nsilvadelrio@ucdavis.edu""")
 
     st.markdown("---")
 
@@ -75,9 +76,11 @@ El enfoque pedagógico de la plataforma está centrado en el aprendizaje autóno
         """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""**Ludy Angelica Leon Quiroga**""")
+        st.markdown("""**Ludy Angelica Leon Quiroga, Electronic Eng**""")
         st.markdown("""Master's student - Dairy and Food Science Department""")
         st.markdown("""South Dakota State University""")
+        st.markdown("""ludy.leonquiroga@sdstate.edu""")
+        st.markdown("""angelicaleonquiroga@gmail.com""")
         st.markdown("""Participó en el desarrollo de esta plataforma, incluyendo el diseño, 
                     implementación y análisis de datos del sistema de entrenamiento
                     
@@ -106,7 +109,7 @@ El enfoque pedagógico de la plataforma está centrado en el aprendizaje autóno
         st.markdown("""
         Este material fue desarrollado como parte del proyecto **AgriProspects** para apoyar la capacitación y el desarrollo de la fuerza laboral en el sector agropecuario.
         Organización comprometida con la seguridad, la capacitación y el 
-        desarrollo de habilidades en el sector agropecuario. Su apoyo ha permitido el desarrollo de esta plataforma para mejorar 
+        desarrollo de habilidades en el sector agropecuario. Su apoyo ha permitido el desarrollo de los videos de seguridad para mejorar 
         la capacitación de los usuarios.
         Tambien formaron parte South Dakota State University y University of California, Davis.
         """)

@@ -101,7 +101,7 @@ def training_flow():
         # -------- VIDEO1 --------
         if step == "video1":
             render_video_module(
-                video_id="x70OzqxE7cU",
+                video_id="Bxfk5FafrVE",
                 completed_key="video1_completed",
                 next_step="quiz1",
                 module_title="Módulo 1 – Tipos de extintores"
@@ -169,7 +169,7 @@ def training_flow():
         # -------- VIDEO2 --------
         elif step == "video2":
             render_video_module(
-                video_id="hLVi2kESqn8",
+                video_id="-WNqzmxy9No",
                 completed_key="video2_completed",
                 next_step="quiz2",
                 module_title="Módulo 2 – Como usar un extintor de incendios"
@@ -229,7 +229,7 @@ def training_flow():
         # -------- VIDEO 3 --------
         elif step == "video3":
             render_video_module(
-                video_id="-R59pwJLp6k",
+                video_id="bFUBN7CKVIw",
                 completed_key="video3_completed",
                 next_step="quiz3",
                 module_title="Módulo 3 – Prevención de riesgos"
@@ -290,7 +290,7 @@ def training_flow():
 # -------- VIDEO 4 --------
         elif step == "video4":
             render_video_module(
-                video_id="oLbjn2DfLDY",
+                video_id="PpOCbRfQbD8",
                 completed_key="video4_completed",
                 next_step="quiz4",
                 module_title="Módulo 4 – Cuidados que debes tener cuenta sobre incendios en tu hogar"

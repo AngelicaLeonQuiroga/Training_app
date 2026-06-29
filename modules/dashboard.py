@@ -524,7 +524,7 @@ def dashboard():
 
 
         # comentario
-        comment = st.text_area("Comentarios (opcional)")
+        comment = st.text_area("Comentarios sobre el entrenamiento o que temas mas te gustaria ver (opcional)")
 
         if st.button("Enviar"):
 
