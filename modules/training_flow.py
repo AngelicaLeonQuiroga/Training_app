@@ -432,6 +432,10 @@ def training_flow():
                 st.markdown("---")
                 col1, col2, col3 = st.columns([1,2,1])
                 with col2:
+                        if st.button("Ver mis resultados"):
+                            st.session_state["selected_training"] = "dashboard"
+                            st.rerun()
+                            
                         if st.button("Volver al inicio para ver más cursos"):
                             
                             # Reset del flujo
@@ -443,6 +447,9 @@ def training_flow():
                             st.session_state["course_started"] = False
 
                             st.rerun()
+                        
+                        
+
 
 
 

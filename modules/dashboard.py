@@ -56,7 +56,7 @@ def classify_performance(score):
 
     elif score <= 13:
         return "En progreso", round(percentage, 1), \
-        "Buen avance, pero aún no alcanza el estándar de seguridad; repasar temas el modulo"
+        "Buen avance, pero aún no alcanza el estándar de seguridad; repasar temas del modulo"
 
     else:
         return "Aprobado", round(percentage, 1), \
@@ -64,7 +64,7 @@ def classify_performance(score):
     
 def dashboard():
     load_dashboard_css()
-    st.title("📊 Panel de control")
+    st.title("📊 Panel de control y resultados")
     user_email = None
 
     if "user" in st.session_state:
