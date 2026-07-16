@@ -32,7 +32,7 @@ def initial_quiz_screen():
     with st.form("initial_quiz"):
         q1 = st.radio(
             "1.  Ha recibido algún tipo de entrenamiento relacionado con la seguridad contra incendios/fuego: ",
-            ["Sí, en el trabajo", "Sí, el el colegio", "Sí, en otro sitio", "No, nunca he recibido entrenamientos"],
+            ["Sí, en el trabajo", "Sí, en el colegio", "Sí, en otro sitio", "No, nunca he recibido entrenamientos"],
             index=None
         )
 
