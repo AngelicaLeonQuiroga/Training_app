@@ -18,7 +18,60 @@ question_text = {
     "q13": "¿Deben controlarse las pilas de estiércol?",
     "q14": "¿Cuándo dejar de intentar apagar un incendio?",
     "q15": "¿Cómo verificar que un extintor está listo?",
-    "q16": "¿Qué hacer si el fuego se sale de control?"
+    "q16": "¿Qué hacer si el fuego se sale de control?",
+    "q17": "¿Cuándo dejar de intentar apagar un incendio?",
+    "q19": "¿Qué hacer si el fuego es grande y no puede controlarse?"
+}
+# =====================================================
+# PLAN DE MEJORA (POST TEST)
+# =====================================================
+
+post_question_text = {
+    "q1": "Existen diferentes clases de incendio/fuego según lo que se quema.",
+    "q2": "¿Qué tipos de fuego puede apagar un extintor ABC?",
+    "q3": "¿Por qué una pila de heno húmedo o estiércol puede incendiarse sola?",
+    "q4": "¿Qué debo hacer si se inicia un incendio en un basurero?",
+
+    "q5": "¿Cómo puede saber si un extintor está cargado y listo para usarse?",
+    "q6": "¿Hacia dónde debe apuntarse la boquilla del extintor?",
+    "q7": "¿Debo barrer la base del fuego moviendo el extintor de lado a lado?",
+
+    "q8": "¿Qué debes hacer si el extintor del tractor no está presente o está en rojo?",
+    "q9": "¿Qué acción ayuda a prevenir incendios en la granja?",
+    "q10": "¿Qué materiales aumentan el riesgo de incendio en motores?",
+
+    "q11": "¿Qué hacer en caso de incendio con grasa o aceite?",
+    "q12": "¿Qué ayuda a prevenir incendios en el hogar?",
+    "q13": "¿Deben controlarse las pilas de estiércol?",
+    "q14": "¿Cómo identificar que un fuego está fuera de control?",
+
+    "q16": "¿Qué hacer si el fuego es grande y no puedes controlarlo?"
+}
+
+video_mapping = {
+    "📹 Módulo 1 – Tipos de extintores": {
+        "questions": ["q1", "q2", "q3", "q4"],
+        "recommendation":
+        "Revisa nuevamente los conceptos sobre tipos de fuego, extintores ABC y combustión espontánea."
+    },
+
+    "📹 Módulo 2 – Cómo usar un extintor": {
+        "questions": ["q5", "q6", "q7"],
+        "recommendation":
+        "Repasa la inspección previa del extintor y el procedimiento correcto para utilizarlo."
+    },
+
+    "📹 Módulo 3 – Prevención de riesgos": {
+        "questions": ["q8", "q9", "q10"],
+        "recommendation":
+        "Revisa las medidas preventivas para evitar incendios en maquinaria y áreas de trabajo."
+    },
+
+    "📹 Módulo 4 – Seguridad contra incendios en el hogar": {
+        "questions": ["q11", "q12", "q13", "q14", "q16"],
+        "recommendation":
+        "Repasa las medidas de prevención y respuesta ante incendios en el hogar."
+    }
 }
 
 def load_csv(file):
@@ -105,6 +158,20 @@ def dashboard():
 
     # -------- MERGE --------
     merged = df_pre.merge(df_post, on="user", suffixes=("_pre", "_post"))
+    merged = merged.rename(columns={
+        "q17_correct": "q17_correct_pre",
+        "q19_correct": "q19_correct_pre",
+        "q1_correct": "q1_correct_post",
+        "q2_correct": "q2_correct_post",
+        "q3_correct": "q3_correct_post"
+    })
+    merged = merged.drop(
+        columns=[
+            "q18_correct",
+            "q15_correct_post"
+        ],
+        errors="ignore"
+    )
     if merged.empty:
         st.error("❌ No matching users between pre and post")
         st.write("PRE users:", df_pre["user"].tolist())
@@ -125,7 +192,6 @@ def dashboard():
         st.markdown("## 👤 Tu rendimiento personal")
         
         if not user_data.empty:
-
             user_pre = user_data["score_pre"].iloc[0]
             user_post = user_data["score_post"].iloc[0]
             #user_improvement = user_post - user_pre
@@ -180,6 +246,64 @@ def dashboard():
 
             {post_msg}
             """)
+            # =====================================================
+            # PLAN DE MEJORA PERSONALIZADO
+            # =====================================================
+
+            st.markdown("---")
+            st.markdown("## 🎯 Plan de mejora personalizado")
+
+            modules_to_review = {}
+
+            for module_name, module_info in video_mapping.items():
+
+                failed_questions = []
+
+                for q in module_info["questions"]:
+
+                    col_name = f"{q}_correct_post"
+
+                    if col_name in user_data.columns:
+                        is_correct = user_data[col_name].iloc[0]
+                        if not is_correct:
+
+                            failed_questions.append(
+                                post_question_text.get(q, q)
+                            )
+
+                if failed_questions:
+
+                    modules_to_review[module_name] = {
+                        "questions": failed_questions,
+                        "recommendation": module_info["recommendation"]
+                    }
+
+            if modules_to_review:
+
+                st.info(
+                    "Hemos identificado algunos temas que podrían beneficiarse de una revisión adicional."
+                )
+
+                for module_name, data in modules_to_review.items():
+
+                    with st.container(border=True):
+
+                        st.markdown(f"### {module_name}")
+
+                        st.markdown("**Preguntas relacionadas:**")
+
+                        for question in data["questions"]:
+                            st.markdown(f"- {question}")
+
+                        st.caption(
+                            f"💡 Recomendación: {data['recommendation']}"
+                        )
+
+            else:
+
+                st.success(
+                    "🎉 Excelente trabajo. No se detectaron áreas que requieran refuerzo adicional."
+                )
 
 
         else:
@@ -240,61 +364,6 @@ def dashboard():
                 )
 
         st.markdown("")
-
-    
-    # -------- DELTA HISTOGRAM --------
-    
-   # with st.container(border=True):
-
-       # st.markdown("### 📉 Impacto del entrenamiento")
-
-
-        # Contar valores directamente
-       # hist_df = merged["improvement"].value_counts().reset_index()
-      #  hist_df.columns = ["Delta", "Count"]
-
-        # Asegurar que es numérico
-     #   hist_df["Delta"] = hist_df["Delta"].astype(int)
-
-        # Ordenar correctamente
-    #    hist_df = hist_df.sort_values(by="Delta")
-
-        # Opcional: formato bonito (+1, +2, etc.)
-   #     hist_df["Delta"] = hist_df["Delta"].apply(lambda x: f"{x:+}")
-
-        # Mostrar gráfico
-        
-  #      chart = alt.Chart(hist_df).mark_bar().encode(
- #           x=alt.X("Delta:N", title="Puntaje de mejora (Post - Pre)"),
-     #       y=alt.Y("Count:Q", title="Numero de estudiantes"),
-    #        tooltip=["Delta", "Count"]
-   #     )
-
-        #st.altair_chart(chart, width="stretch")
-
-       # avg_delta = merged["improvement"].mean()
-
-      #  st.info(f"📊 Promedio de mejora: {avg_delta:.2f} points")
-
-        # -------- QUICK INSIGHTS --------
-     #   total = len(merged)
-
-    #    improved = (merged["improvement"] > 0).sum()
-   #     same = (merged["improvement"] == 0).sum()
-  #      worse = (merged["improvement"] < 0).sum()
-
- #       st.markdown("### 🔍 Analisis de perspectiva")
-#
- #       col1, col2, col3 = st.columns(3)
-#        with col1:
-       #     card("✅ Mejoro", f"{(improved/total)*100:.1f}%")
-
-      #  with col2:
-     #       card("➖ No tuvo cambios", f"{(same/total)*100:.1f}%")
-
-    #    with col3:
-        #    card("⚠️ Disminuyo", f"{(improved/total)*100:.1f}%")
-       # st.markdown("")
         
     # 📊 SEGMENTACIÓN POR NIVELES
     # =====================================================
@@ -398,16 +467,36 @@ def dashboard():
 
     
     # -------- QUESTIONS --------
-    questions = [f"q{i}" for i in range(4, 17)]
+    # -------- QUESTIONS --------
+
+    question_mapping = {
+        "q4": "q1",
+        "q5": "q2",
+        "q6": "q3",
+        "q7": "q4",
+        "q8": "q5",
+        "q9": "q6",
+        "q10": "q7",
+        "q11": "q8",
+        "q12": "q9",
+        "q13": "q10",
+        "q14": "q11",
+        "q15": "q12",
+        "q16": "q13",
+        "q17": "q14",
+        "q19": "q16"
+    }
 
     data = []
 
-    for q in questions:
-        pre_acc = merged[q + "_correct_pre"].mean()
-        post_acc = merged[q + "_correct_post"].mean()
+    for pre_q, post_q in question_mapping.items():
+
+        pre_acc = merged[f"{pre_q}_correct_pre"].mean()
+
+        post_acc = merged[f"{post_q}_correct_post"].mean()
 
         data.append({
-            "Question": question_text.get(q, q),
+            "Question": question_text.get(pre_q, pre_q),
             "Pre": pre_acc,
             "Post": post_acc,
             "Improvement": post_acc - pre_acc
@@ -424,7 +513,7 @@ def dashboard():
 
     with col1:
         st.success(f"""
-        🚀 **Mas usuarios acertaron**
+        🚀 **Más usuarios acertaron**
         
         **{top_question['Question']}**
         

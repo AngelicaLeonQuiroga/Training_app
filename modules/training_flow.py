@@ -325,7 +325,7 @@ def training_flow():
                     "No sé "],index=None
                 )
                 q13 = st.radio(
-                    "13. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio, cuando la temperatura interna incrementa.",
+                    "13. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies/feet (1.5 metros) y ser movidas constantemente porque puede causar un incendio, cuando la temperatura interna incrementa.",
                     ["Verdadero",
                     "Falso",
                     "No sé "],index=None

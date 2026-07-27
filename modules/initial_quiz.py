@@ -39,7 +39,7 @@ def initial_quiz_screen():
         q2 = st.multiselect(
             "2. Si has recibido un entrenamiento, ¿de quién lo has recibido?",
             ["Compañías externas que vienen al trabajo ", "Programas de extensión de la universidad", 
-             "Internet","Videos en la granja","Otro"],
+             "Internet","Videos en la granja","Nunca he recibido entrenamientos","Otro"],
         )
 
         q3 = st.multiselect(
@@ -151,7 +151,7 @@ def initial_quiz_screen():
               index=None
         )
         q16 = st.radio(
-            "16. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies (1.5 metros) y ser movidas constantemente porque puede causar un incendio, cuando la temperatura interna incrementa.",
+            "16. Responda Verdadero o Falso. Las pilas de estiércol no deben superar más de 5 pies/feet (1.5 metros) y ser movidas constantemente porque puede causar un incendio, cuando la temperatura interna incrementa.",
             ["Verdadero",
               "Falso",
               "No sé "],index=None
