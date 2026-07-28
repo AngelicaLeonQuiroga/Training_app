@@ -1,5 +1,5 @@
 import streamlit as st
-#from utils import save_in_csv
+from modules.progress import get_progress
 from supabase_client import supabase
 
 def registration_screen():
@@ -99,11 +99,25 @@ def registration_screen():
                         .execute()
                     
                     if existing_user.data:
-                                # ✅ YA EXISTE → NO INSERTAR
-                                st.warning("Este usuario ya esta registrado")
+                        st.warning("Este usuario ya esta registrado")
 
-                                # usar el usuario existente
-                                st.session_state["user"] = existing_user.data[0]
+                        st.session_state["user"] = existing_user.data[0]
+
+                        progress = get_progress(
+                            email,
+                            "Seguridad contra incendios"
+                    
+                        )
+                        st.write(progress)
+                        if progress:
+
+                            st.session_state["initial_quiz_done"] = (
+                                progress.get("pre_test_completed", False)
+                            )
+
+                            st.session_state["training_step"] = (
+                                progress.get("current_step", "video1")
+                            )
 
                     
                     else:
@@ -111,6 +125,8 @@ def registration_screen():
                                 supabase.table("users").insert(user).execute()
 
                                 st.session_state["user"] = user
+                                st.session_state["initial_quiz_done"] = False
+                                st.session_state["training_step"] = "video1"
                                 st.success("Usuario registrado con exito")
 
                     st.rerun()

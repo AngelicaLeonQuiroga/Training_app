@@ -1,44 +1,27 @@
 from supabase_client import supabase
 from datetime import datetime
+import streamlit as st
 
-def save_progress(email, course, current_step):
-    
-    """
-    Guarda o actualiza el progreso de un usuario.
-    """
-    email = email.strip().lower() 
-    existing = (
+def save_progress(email, course, current_step,
+                  pre_test_completed=False):
+
+    email = email.strip().lower()
+
+    data = {
+        "current_step": current_step,
+        "pre_test_completed": pre_test_completed,
+        "updated_at": str(datetime.now())
+    }
+
+    response = (
         supabase.table("training_progress")
-        .select("*")
+        .update(data)
         .eq("user_email", email)
         .eq("course", course)
         .execute()
     )
 
-    data = {
-        "user_email": email,
-        "course": course,
-        "current_step": current_step,
-        "status_test": "in_progress",
-        "updated_at": str(datetime.now())
-
-    }
-
-    if existing.data:
-        response = (
-            supabase.table("training_progress")
-            .update(data)
-            .eq("user_email", email)
-            .eq("course", course)
-            .execute()
-        )
-    else:
-        response = (
-            supabase.table("training_progress")
-            .insert(data)
-            .execute()
-        )
-    return response()
+    return response
 
 def get_progress(email, course):
     """
@@ -71,6 +54,7 @@ def mark_completed(email, course):
     data = {
         "current_step": "completed",
         "status_test": "completed",
+        "pre_test_completed": True,
         "updated_at": str(datetime.now())
     }
 
@@ -97,6 +81,7 @@ def restart_progress(email, course):
         "course": course,
         "current_step": "video1",
         "status_test": "in_progress",
+        "pre_test_completed": False,
         "updated_at": str(datetime.now())
     }
 

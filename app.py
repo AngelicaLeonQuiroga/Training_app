@@ -6,14 +6,14 @@ from modules.home import home_screen
 from modules.dashboard import dashboard
 from supabase_client import supabase
 from modules.who_we_are import who_we_are
-
+from modules.progress import get_progress
 
 
 def load_css():
     with open("styles/main.css", encoding="utf-8") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-def get_progress():
+def get_progress_percentage():
     course_steps = [
         "video1",
         "quiz1",
@@ -65,6 +65,7 @@ with st.sidebar:
         st.session_state.pop("training_step", None)
         st.session_state.pop("course_name", None)
         st.session_state["initial_quiz_done"] = False
+        st.session_state.pop("progress_loaded", None)
         st.rerun()
 
 
@@ -94,7 +95,7 @@ with st.sidebar:
         )
 
         #  PROGRESO
-        progress = get_progress()
+        progress = get_progress_percentage()
         st.progress(progress)
         st.caption(f"{int(progress * 100)}% completado")
 

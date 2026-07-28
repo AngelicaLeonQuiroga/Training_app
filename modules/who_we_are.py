@@ -107,11 +107,14 @@ El enfoque pedagógico de la plataforma está centrado en el aprendizaje autóno
 
     with col2:
         st.markdown("""
-        Este material fue desarrollado como parte del proyecto **AgriProspects** para apoyar la capacitación y el desarrollo de la fuerza laboral en el sector agropecuario.
-        Organización comprometida con la seguridad, la capacitación y el 
-        desarrollo de habilidades en el sector agropecuario. Su apoyo ha permitido el desarrollo de los videos de seguridad para mejorar 
-        la capacitación de los usuarios.
-        Tambien formaron parte South Dakota State University y University of California, Davis.
+        Esta plataforma de capacitación cuenta con el apoyo de una subvención otorgada por la Fundación de Extensión, 
+        financiada a través de la Iniciativa de Investigación Agrícola y Alimentaria (AFRI) - Centro Nacional de Intercambio de Información para la Industria 
+        y la Fuerza Laboral, proyecto n.° 2023-67037-40533, del Instituto Nacional de Alimentación y Agricultura del Departamento de Agricultura de los Estados Unidos. 
+        Las opiniones, hallazgos, conclusiones o recomendaciones expresadas en esta plataforma de capacitación y en el apoyo consultivo son responsabilidad de sus 
+        autores y no reflejan necesariamente la opinión del Departamento de Agricultura de los Estados Unidos ni de la Fundación de Extensión.
+        Su apoyo ha permitido el desarrollo de los videos de seguridad para mejorar 
+                la capacitación de los usuarios.
+                Tambien formaron parte South Dakota State University y University of California, Davis.
         """)
 
     st.markdown("---")

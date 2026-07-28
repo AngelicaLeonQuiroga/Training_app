@@ -1,5 +1,9 @@
 import streamlit as st
-#from utils import save_in_csv
+from modules.progress import (
+    save_progress,
+    get_progress,
+    mark_completed
+)
 from supabase_client import supabase
 from datetime import datetime
 
@@ -40,8 +44,21 @@ def render_video_module(video_id, completed_key, next_step, module_title):
         #st.markdown("<br><br>", unsafe_allow_html=True)
         if st.button("Continue al Quiz"):
             st.session_state[completed_key] = False
-            
             st.session_state["training_step"] = next_step
+            st.session_state["debug_course"] = st.session_state.get("course_name")
+            st.session_state["debug_next_step"] = next_step
+            st.session_state["debug_guardado"] = (
+                f"Guardando {next_step}"
+            )
+            save_progress(
+                st.session_state["user"]["email"],
+                st.session_state.get(
+                    "course_name",
+                    "Seguridad contra incendios"
+                ),
+                next_step,
+                pre_test_completed=True
+            )
             st.rerun()
 
 def training_flow():
@@ -55,13 +72,40 @@ def training_flow():
     # Inicializar training_step 
     
     if "training_step" not in st.session_state:
-        st.session_state["training_step"] = "video1"
 
+        saved_progress = None
+
+        if "user" in st.session_state:
+
+            saved_progress = get_progress(
+                st.session_state["user"]["email"],
+                st.session_state.get(
+                    "course_name",
+                    "Seguridad contra incendios"
+                )
+            )
+
+        if saved_progress:
+
+            if saved_progress.get("pre_test_completed"):
+                st.session_state["initial_quiz_done"] = True
+
+            st.session_state["training_step"] = (
+                saved_progress["current_step"]
+            )
+
+        else:
+
+            st.session_state["training_step"] = "video1"
 
     if "sidebar_open" not in st.session_state:
         st.session_state["sidebar_open"] = True
 
     # Obtener paso actual
+    if "debug_guardado" in st.session_state:
+        st.warning(
+            st.session_state["debug_guardado"]
+        )
     step = st.session_state["training_step"]
     
     #botton desplegable    
@@ -164,6 +208,17 @@ def training_flow():
                         st.session_state["post_answers"][q] = answers[q]
                         st.session_state["post_results"][q + "_correct"] = is_correct
                     st.session_state["training_step"] = "video2"
+
+                    save_progress(
+                        st.session_state["user"]["email"],
+                        st.session_state.get(
+                            "course_name",
+                            "Seguridad contra incendios"
+                        ),
+                        "video2",
+                        pre_test_completed=True
+                    )
+
                     st.rerun()
 
         # -------- VIDEO2 --------
@@ -223,6 +278,17 @@ def training_flow():
                         st.session_state["post_answers"][q] = answers[q]
                         st.session_state["post_results"][q + "_correct"] = is_correct                    
                     st.session_state["training_step"] = "video3"
+
+                    save_progress(
+                        st.session_state["user"]["email"],
+                        st.session_state.get(
+                            "course_name",
+                            "Seguridad contra incendios"
+                        ),
+                        "video3",
+                        pre_test_completed=True
+                    )
+
                     st.rerun()
 
 
@@ -286,6 +352,17 @@ def training_flow():
                                     st.session_state["post_answers"][q] = answers[q]
                                     st.session_state["post_results"][q + "_correct"] = is_correct
                     st.session_state["training_step"] = "video4"
+
+                    save_progress(
+                        st.session_state["user"]["email"],
+                        st.session_state.get(
+                            "course_name",
+                            "Seguridad contra incendios"
+                        ),
+                        "video4",
+                        pre_test_completed=True
+                    )
+
                     st.rerun()
 # -------- VIDEO 4 --------
         elif step == "video4":
@@ -293,7 +370,7 @@ def training_flow():
                 video_id="PpOCbRfQbD8",
                 completed_key="video4_completed",
                 next_step="quiz4",
-                module_title="Módulo 4 – Cuidados que debes tener cuenta sobre incendios en tu hogar"
+                module_title="Módulo 4 – Cuidados que debes tener en cuenta sobre incendios en tu hogar"
         )
         # -------- QUIZ 4 --------
         elif step == "quiz4":
@@ -364,6 +441,17 @@ def training_flow():
                                     st.session_state["post_answers"][q] = answers[q]
                                     st.session_state["post_results"][q + "_correct"] = is_correct
                     st.session_state["training_step"] = "completed"
+
+                    save_progress(
+                        st.session_state["user"]["email"],
+                        st.session_state.get(
+                            "course_name",
+                            "Seguridad contra incendios"
+                        ),
+                        "completed",
+                        pre_test_completed=True
+                    )
+
                     st.rerun()
 
         # -------- COMPLETED --------
@@ -389,7 +477,14 @@ def training_flow():
                         }
                     
                     #  GUARDAR EN SUPABASE
-                    supabase.table("post_test").insert(post_data).execute()                    
+                    supabase.table("post_test").insert(post_data).execute() 
+                    mark_completed(
+                        st.session_state["user"]["email"],
+                        st.session_state.get(
+                            "course_name",
+                            "Seguridad contra incendios"
+                        )
+                    )                   
                     # ✅ limpiar datos después de guardar
                     st.session_state["post_answers"] = {}
                     st.session_state["post_results"] = {}

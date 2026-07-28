@@ -1,5 +1,5 @@
 import streamlit as st
-#from utils import save_in_csv
+from modules.progress import save_progress
 from supabase_client import supabase
 from datetime import datetime
 
@@ -220,7 +220,12 @@ def initial_quiz_screen():
         
         #  GUARDAR EN SUPABASE
         supabase.table("initial_quiz").insert(quiz_data).execute()
-
+        save_progress(
+            st.session_state["user"]["email"],
+            st.session_state["course_name"],
+            "video1",
+            pre_test_completed=True
+        )
         st.session_state["initial_quiz_done"] = True
         st.success("Tus respuestas se subieron exitosamente.")
         st.rerun()
