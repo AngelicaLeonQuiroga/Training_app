@@ -39,48 +39,72 @@ def home_screen():
     st.markdown("---")
 
     st.subheader("Entrenamientos disponibles")
+    with st.container(border=True):
+           st.markdown("""**Seguridad contra incendios**""")
+           st.info("La capacitacion incluye 4 videos cortos, con una duración de 9 minutos. Por favor, reserve 15 minutos para completar toda la capacitación, incluyendo las preguntas.")
+           st.success("This training includes 4 short videos with a total duration of approximately 9 minutes. Please reserve 15 minutes to complete the full training. Incluiding the questions.")  
+                           
+    # Layout en columnas
+           col1, col2 = st.columns([1,1])
+            
+            # -------- CARD 1 --------
+           with col1:
+                st.markdown(f"""
+                <div >
+                    <img src="data:image/png;base64,{img_fire}" />
+                </div>
+                """, unsafe_allow_html=True)
+                st.markdown("")
+                        
 
+            # -------- CARD 2 --------
+           with col2:
+                #st.markdown("""**PROXIMAMENTE**""")
+                col1, col2 = st.columns([1,1])
+                with col1:
+                    st.markdown("""**Nivel de habilidad**""")
+                    st.markdown("Básico")
+                    st.markdown("")
+                    st.markdown("""**Lenguaje**""")
+                    st.markdown("Español con subtitulos en ingles")
+                    st.markdown("")
+                with col2:
+                    st.markdown("""**Duración**""")
+                    st.markdown("15 minutos")
+                    st.markdown("")
+                    st.markdown("""**Módulos**""")
+                    st.markdown("4")
+                    st.markdown("")
+                if st.button("Comenzar", key="fire", width="stretch"):
+                                        st.session_state["selected_training"] = "fire"
+                                        st.session_state["course_name"] = "Seguridad contra incendios"
+                                    # GUARDAR HORA DE INICIO
+                                        st.session_state["training_start_time"] = datetime.now()
+                    
+                                        st.rerun()    
+    
+    
     # Layout en columnas
     col1, col2 = st.columns([1,1])
-    
-    # -------- CARD 1 --------
     with col1:
-        st.markdown(f"""
-        <div class="card clickable">
-            <h3>Seguridad contra incendios</h3>
-            <img src="data:image/png;base64,{img_fire}" />
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("")
-        st.info("La capacitacion incluye 4 videos cortos, con una duración de 9 minutos. Por favor, reserve 15 minutos para completar toda la capacitación, incluyendo las preguntas.")
-        st.success("This training includes 4 short videos with a total duration of approximately 9 minutes. Please reserve 15 minutes to complete the full training. Incluiding the questions.")
-        if st.button("Comenzar", key="fire", width="stretch"):
-                    st.session_state["selected_training"] = "fire"
-                    st.session_state["course_name"] = "Seguridad contra incendios"
-                # GUARDAR HORA DE INICIO
-                    st.session_state["training_start_time"] = datetime.now()
-
-                    st.rerun()
+           st.markdown("""**PROXIMAMENTE**""")
+           col1, col2 = st.columns([1,1])
+           with col1:
                 
+                st.markdown(f"""
+               <div>
+                   <img src="data:image/png;base64,{img_bio}" />
+               </div>
+               """, unsafe_allow_html=True)
+                st.markdown("")
+           with col2:
+                st.markdown(f"""
+               <div>
+                   <img src="data:image/png;base64,{img_chemical}" />
+               </div>
+               """, unsafe_allow_html=True)
+   
 
-    # -------- CARD 2 --------
-    with col2:
-        st.markdown("""**PROXIMAMENTE**""")
-        col1, col2 = st.columns([1,1])
-        with col1:
-             
-             st.markdown(f"""
-            <div>
-                <img src="data:image/png;base64,{img_bio}" />
-            </div>
-            """, unsafe_allow_html=True)
-             st.markdown("")
-        with col2:
-             st.markdown(f"""
-            <div>
-                <img src="data:image/png;base64,{img_chemical}" />
-            </div>
-            """, unsafe_allow_html=True)
 
  #       if st.button("Start", key="bio", width="stretch"):
   #          st.session_state["selected_training"] = "bio"
