@@ -5,7 +5,7 @@ import altair as alt
 from supabase_client import supabase
 
 #  MAPEO DE PREGUNTAS
-question_text = {
+FIRE_QUESTION_TEXT = {
     "q4": "¿Qué debo hacer si se inicia un incendio en un basurero?",
     "q5": "¿Cómo verificar que un extintor está listo para usarse?",
     "q6": "¿Hacia dónde se debe apuntar el extintor?",
@@ -26,7 +26,7 @@ question_text = {
 # PLAN DE MEJORA (POST TEST)
 # =====================================================
 
-post_question_text = {
+FIRE_POST_QUESTION_TEXT = {
     "q1": "Existen diferentes clases de incendio/fuego según lo que se quema.",
     "q2": "¿Qué tipos de fuego puede apagar un extintor ABC?",
     "q3": "¿Por qué una pila de heno húmedo o estiércol puede incendiarse sola?",
@@ -48,7 +48,7 @@ post_question_text = {
     "q16": "¿Qué hacer si el fuego es grande y no puedes controlarlo?"
 }
 
-video_mapping = {
+FIRE_VIDEO_MAPPING = {
     "📹 Módulo 1 – Tipos de extintores": {
         "questions": ["q1", "q2", "q3", "q4"],
         "recommendation":
@@ -73,6 +73,103 @@ video_mapping = {
         "Repasa las medidas de prevención y respuesta ante incendios en el hogar."
     }
 }
+
+FIRE_QUESTION_MAPPING = {
+        "q4": "q1",
+        "q5": "q2",
+        "q6": "q3",
+        "q7": "q4",
+        "q8": "q5",
+        "q9": "q6",
+        "q10": "q7",
+        "q11": "q8",
+        "q12": "q9",
+        "q13": "q10",
+        "q14": "q11",
+        "q15": "q12",
+        "q16": "q13",
+        "q17": "q14",
+        "q19": "q16"
+    }
+
+BIO_QUESTION_TEXT = {
+    "q4": "¿Cuál es el principal objetivo de un plan de bioseguridad en una granja lechera?",
+    "q5": "Si una enfermedad ya está presente en la granja, es fácil eliminarla por completo",
+    "q6": "¿Cuál de estas acciones es más importante cuando llegan animales nuevos a la granja?",
+    "q7": "¿Los vehículos representan un riesgo de bioseguridad?",
+    "q8": "¿Cuál de estos animales es un vector de enfermedades?",
+
+    "q9": "¿Cuál es el propósito principal de usar guantes y cubrebotas en la granja?",
+    "q10": "Antes de colocarse los guantes, se debe:",
+    "q11": "¿Cuándo debe cambiarse un par de guantes desechables?",
+    "q12": "¿Qué deben hacer los visitantes antes de ingresar a las áreas de animales?",
+    "q13": "Si ocurre un pinchazo accidental con una aguja contaminada, la persona debe:",
+
+    "q14": "¿Cuál es una señal de alerta que puede indicar que un animal está enfermo?",
+    "q15": "Si observas un animal con signos de enfermedad, ¿qué debes hacer primero?",
+    "q16": "¿Por qué es importante aislar a los animales enfermos?",
+    "q17": "¿Qué información debe incluir un reporte efectivo de un animal enfermo?",
+    "q18": "¿Qué práctica de bioseguridad debe realizarse antes y después de atender a un animal enfermo?"
+}
+
+BIO_POST_QUESTION_TEXT = {
+    "q4": "¿Cuál es el principal objetivo de un plan de bioseguridad en una granja lechera?",
+    "q5": "Si una enfermedad ya está presente en la granja, es fácil eliminarla por completo",
+    "q6": "¿Cuál de estas acciones es más importante cuando llegan animales nuevos a la granja?",
+    "q7": "¿Los vehículos representan un riesgo de bioseguridad?",
+    "q8": "¿Cuál de estos animales es un vector de enfermedades?",
+
+    "q9": "¿Cuál es el propósito principal de usar guantes y cubrebotas en la granja?",
+    "q10": "Antes de colocarse los guantes, se debe:",
+    "q11": "¿Cuándo debe cambiarse un par de guantes desechables?",
+    "q12": "¿Qué deben hacer los visitantes antes de ingresar a las áreas de animales?",
+    "q13": "Si ocurre un pinchazo accidental con una aguja contaminada, la persona debe:",
+
+    "q14": "¿Cuál es una señal de alerta que puede indicar que un animal está enfermo?",
+    "q15": "Si observas un animal con signos de enfermedad, ¿qué debes hacer primero?",
+    "q16": "¿Por qué es importante aislar a los animales enfermos?",
+    "q17": "¿Qué información debe incluir un reporte efectivo de un animal enfermo?",
+    "q18": "¿Qué práctica de bioseguridad debe realizarse antes y después de atender a un animal enfermo?"
+}
+
+BIO_VIDEO_MAPPING = {
+
+    "📹 Módulo 1 – Qué es la bioseguridad y por qué importa": {
+        "questions": ["q4", "q5", "q6", "q7", "q8"],
+        "recommendation":
+        "Repasa los conceptos básicos de bioseguridad, ingreso de animales y control de vectores."
+    },
+
+    "📹 Módulo 2 – Acciones concretas del trabajador": {
+        "questions": ["q9", "q10", "q11", "q12", "q13"],
+        "recommendation":
+        "Revisa el uso correcto de guantes, higiene de manos y protocolos de ingreso."
+    },
+
+    "📹 Módulo 3 – Detección y reporte de enfermedades": {
+        "questions": ["q14", "q15", "q16", "q17", "q18"],
+        "recommendation":
+        "Repasa la identificación temprana de enfermedades y los procedimientos de reporte."
+    }
+}
+BIO_QUESTION_MAPPING = {
+    "q4": "q4",
+    "q5": "q5",
+    "q6": "q6",
+    "q7": "q7",
+    "q8": "q8",
+    "q9": "q9",
+    "q10": "q10",
+    "q11": "q11",
+    "q12": "q12",
+    "q13": "q13",
+    "q14": "q14",
+    "q15": "q15",
+    "q16": "q16",
+    "q17": "q17",
+    "q18": "q18"
+}
+
 
 def load_csv(file):
     #path:f"data/{file}"
@@ -118,6 +215,36 @@ def classify_performance(score):
 def dashboard():
     load_dashboard_css()
     st.title("📊 Panel de control y resultados")
+    selected_course = st.selectbox(
+        "Seleccione un curso",
+        [
+            "Seguridad contra incendios",
+            "Bioseguridad"
+        ],index=None,
+        placeholder="Seleccione un curso..."
+
+    )
+    if not selected_course:
+        st.info("Seleccione un curso para visualizar los resultados.")
+        return
+
+    if selected_course == "Seguridad contra incendios":
+
+        question_text = FIRE_QUESTION_TEXT
+        post_question_text = FIRE_POST_QUESTION_TEXT
+        video_mapping = FIRE_VIDEO_MAPPING
+        question_mapping = FIRE_QUESTION_MAPPING
+
+        total_questions = 15
+
+    elif selected_course == "Bioseguridad":
+        question_text = BIO_QUESTION_TEXT
+        post_question_text = BIO_POST_QUESTION_TEXT
+        video_mapping = BIO_VIDEO_MAPPING
+        question_mapping = BIO_QUESTION_MAPPING
+        total_questions = 15
+
+
     user_email = None
 
     if "user" in st.session_state:
@@ -131,6 +258,8 @@ def dashboard():
 
     df_pre = pd.DataFrame(response_pre.data)
     df_post = pd.DataFrame(response_post.data)
+    df_pre = df_pre[df_pre["course"] == selected_course]
+    df_post = df_post[df_post["course"] == selected_course]
     df_pre_full = df_pre.copy()
 
     if df_pre.empty or df_post.empty:
@@ -158,20 +287,33 @@ def dashboard():
 
     # -------- MERGE --------
     merged = df_pre.merge(df_post, on="user", suffixes=("_pre", "_post"))
-    merged = merged.rename(columns={
-        "q17_correct": "q17_correct_pre",
-        "q19_correct": "q19_correct_pre",
-        "q1_correct": "q1_correct_post",
-        "q2_correct": "q2_correct_post",
-        "q3_correct": "q3_correct_post"
-    })
-    merged = merged.drop(
-        columns=[
-            "q18_correct",
-            "q15_correct_post"
-        ],
-        errors="ignore"
-    )
+    if selected_course == "Seguridad contra incendios":
+
+        merged = merged.rename(columns={
+            "q17_correct": "q17_correct_pre",
+            "q19_correct": "q19_correct_pre",
+            "q1_correct": "q1_correct_post",
+            "q2_correct": "q2_correct_post",
+            "q3_correct": "q3_correct_post"
+        })
+
+        merged = merged.drop(
+            columns=[
+                "q18_correct",
+                "q15_correct_post"
+            ],
+            errors="ignore"
+        )
+    elif selected_course == "Bioseguridad":
+
+        merged = merged.rename(columns={
+            "q1_correct": "q1_correct_post",
+            "q2_correct": "q2_correct_post",
+            "q3_correct": "q3_correct_post",
+            "q17_correct": "q17_correct_pre",
+            "q18_correct": "q18_correct_pre"
+        })
+
     if merged.empty:
         st.error("❌ No matching users between pre and post")
         st.write("PRE users:", df_pre["user"].tolist())
@@ -312,10 +454,6 @@ def dashboard():
         st.markdown("## Resumen general")
 
         
-
-        
-        total_questions = 15
-
         pre_avg = merged["score_pre"].mean()
         post_avg = merged["score_post"].mean()
 
@@ -468,24 +606,6 @@ def dashboard():
     
     # -------- QUESTIONS --------
     # -------- QUESTIONS --------
-
-    question_mapping = {
-        "q4": "q1",
-        "q5": "q2",
-        "q6": "q3",
-        "q7": "q4",
-        "q8": "q5",
-        "q9": "q6",
-        "q10": "q7",
-        "q11": "q8",
-        "q12": "q9",
-        "q13": "q10",
-        "q14": "q11",
-        "q15": "q12",
-        "q16": "q13",
-        "q17": "q14",
-        "q19": "q16"
-    }
 
     data = []
 

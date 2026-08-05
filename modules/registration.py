@@ -105,7 +105,7 @@ def registration_screen():
 
                         progress = get_progress(
                             email,
-                            "Seguridad contra incendios"
+                            st.session_state.get("course_name")
                     
                         )
                         st.write(progress)

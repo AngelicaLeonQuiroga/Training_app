@@ -7,6 +7,13 @@ from modules.dashboard import dashboard
 from supabase_client import supabase
 from modules.who_we_are import who_we_are
 from modules.progress import get_progress
+from modules.courses.biosecurity.biosecurity_initial_quiz import (
+    initial_quiz_screen as biosecurity_initial_quiz
+)
+
+from modules.courses.biosecurity.biosecurity_training_flow import (
+    training_flow as biosecurity_training
+)
 
 
 def load_css():
@@ -14,17 +21,32 @@ def load_css():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def get_progress_percentage():
-    course_steps = [
-        "video1",
-        "quiz1",
-        "video2",
-        "quiz2",
-        "video3",
-        "quiz3",
-        "video4",
-        "quiz4",
-        "completed"
-    ]
+
+    if st.session_state.get("course_name") == "Bioseguridad":
+
+        course_steps = [
+            "video1",
+            "quiz1",
+            "video2",
+            "quiz2",
+            "video3",
+            "quiz3",
+            "completed"
+        ]
+
+    else:
+
+        course_steps = [
+            "video1",
+            "quiz1",
+            "video2",
+            "quiz2",
+            "video3",
+            "quiz3",
+            "video4",
+            "quiz4",
+            "completed"
+        ]
 
     current_step = st.session_state.get("training_step", "video1")
 
@@ -119,9 +141,20 @@ elif "user" not in st.session_state:
     registration_screen()
 
 # QUIZ INICIAL
+# QUIZ INICIAL
 elif not st.session_state["initial_quiz_done"]:
-    initial_quiz_screen()
+
+    if st.session_state.get("course_name") == "Bioseguridad":
+        biosecurity_initial_quiz()
+
+    else:
+        initial_quiz_screen()
 
 # TRAINING
 else:
-    training_flow()
+
+    if st.session_state.get("course_name") == "Bioseguridad":
+        biosecurity_training()
+
+    else:
+        training_flow()

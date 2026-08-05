@@ -209,6 +209,7 @@ def initial_quiz_screen():
             "user": st.session_state["user"]["email"],
             "name": st.session_state["user"]["name"],
             "email": st.session_state["user"]["email"],
+            "course": st.session_state["course_name"],
             **answers,
             **results,
             "score": score,

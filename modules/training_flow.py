@@ -45,11 +45,6 @@ def render_video_module(video_id, completed_key, next_step, module_title):
         if st.button("Continue al Quiz"):
             st.session_state[completed_key] = False
             st.session_state["training_step"] = next_step
-            st.session_state["debug_course"] = st.session_state.get("course_name")
-            st.session_state["debug_next_step"] = next_step
-            st.session_state["debug_guardado"] = (
-                f"Guardando {next_step}"
-            )
             save_progress(
                 st.session_state["user"]["email"],
                 st.session_state.get(
@@ -101,11 +96,6 @@ def training_flow():
     if "sidebar_open" not in st.session_state:
         st.session_state["sidebar_open"] = True
 
-    # Obtener paso actual
-    if "debug_guardado" in st.session_state:
-        st.warning(
-            st.session_state["debug_guardado"]
-        )
     step = st.session_state["training_step"]
     
     #botton desplegable    
@@ -469,6 +459,7 @@ def training_flow():
                     post_data = {
                             "user": st.session_state["user"]["email"],  # FIX
                             "name": st.session_state["user"]["name"],
+                            "course": st.session_state["course_name"],
                             **answers,
                             **results,
                             "score": score,

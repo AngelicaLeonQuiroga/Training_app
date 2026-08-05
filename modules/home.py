@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime
 import base64
+from modules.progress import get_progress
 
 def get_image_base64(path):
     with open(path, "rb") as f:
@@ -76,13 +77,103 @@ def home_screen():
                     st.markdown("4")
                     st.markdown("")
                 if st.button("Comenzar", key="fire", width="stretch"):
-                                        st.session_state["selected_training"] = "fire"
-                                        st.session_state["course_name"] = "Seguridad contra incendios"
-                                    # GUARDAR HORA DE INICIO
-                                        st.session_state["training_start_time"] = datetime.now()
-                    
-                                        st.rerun()    
+
+                    st.session_state["selected_training"] = "fire"
+                    st.session_state["course_name"] = "Seguridad contra incendios"
+                # GUARDAR HORA DE INICIO
+                    st.session_state["training_start_time"] = datetime.now()
+                    if "user" in st.session_state:
+
+                        progress = get_progress(
+                            st.session_state["user"]["email"],
+                            "Seguridad contra incendios"
+                        )
+
+                        if progress:
+
+                            st.session_state["initial_quiz_done"] = (
+                                progress.get("pre_test_completed", False)
+                            )
+
+                            st.session_state["training_step"] = (
+                                progress.get("current_step", "video1")
+                            )
+
+                        else:
+
+                            st.session_state["initial_quiz_done"] = False
+                            st.session_state["training_step"] = "video1"
+
+                    st.session_state["training_start_time"] = datetime.now()
+
+                    st.rerun()
+    with st.container(border=True):
+               st.markdown("""**Bioseguridad en granjas lecheras**""")
+               st.info("La capacitacion incluye 4 videos cortos, con una duración de 11 minutos. Por favor, reserve 15 minutos para completar toda la capacitación, incluyendo las preguntas.")
+               st.success("This training includes 4 short videos with a total duration of approximately 11 minutes. Please reserve 18 minutes to complete the full training. Incluiding the questions.")  
+                               
+        # Layout en columnas
+               col1, col2 = st.columns([1,1])
+                
+                # -------- CARD 1 --------
+               with col1:
+                    st.markdown(f"""
+                    <div >
+                        <img src="data:image/png;base64,{img_bio}" />
+                    </div>
+                    """, unsafe_allow_html=True)
+                    st.markdown("")
+                            
     
+                # -------- CARD 2 --------
+               with col2:
+                    #st.markdown("""**PROXIMAMENTE**""")
+                    col1, col2 = st.columns([1,1])
+                    with col1:
+                        st.markdown("""**Nivel de habilidad**""")
+                        st.markdown("Básico")
+                        st.markdown("")
+                        st.markdown("""**Lenguaje**""")
+                        st.markdown("Español con subtitulos en ingles")
+                        st.markdown("")
+                    with col2:
+                        st.markdown("""**Duración**""")
+                        st.markdown("18 minutos")
+                        st.markdown("")
+                        st.markdown("""**Módulos**""")
+                        st.markdown("3")
+                        st.markdown("")
+                    if st.button("Comenzar", key="bio", width="stretch"):
+
+                        st.session_state["selected_training"] = "bio"
+                        st.session_state["course_name"] = "Bioseguridad"
+                        # GUARDAR HORA DE INICIO
+                        st.session_state["training_start_time"] = datetime.now()
+                        if "user" in st.session_state:
+
+                            progress = get_progress(
+                                st.session_state["user"]["email"],
+                                "Bioseguridad"
+                            )
+
+                            if progress:
+
+                                st.session_state["initial_quiz_done"] = (
+                                    progress.get("pre_test_completed", False)
+                                )
+
+                                st.session_state["training_step"] = (
+                                    progress.get("current_step", "video1")
+                                )
+
+                            else:
+
+                                st.session_state["initial_quiz_done"] = False
+                                st.session_state["training_step"] = "video1"
+
+                        st.session_state["training_start_time"] = datetime.now()
+
+                        st.rerun()                      
     
     # Layout en columnas
     col1, col2 = st.columns([1,1])
