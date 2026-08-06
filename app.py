@@ -14,7 +14,13 @@ from modules.courses.biosecurity.biosecurity_initial_quiz import (
 from modules.courses.biosecurity.biosecurity_training_flow import (
     training_flow as biosecurity_training
 )
+from modules.courses.chemical.chemicals_initial_quiz import (
+    initial_quiz_screen as chemicals_initial_quiz
+)
 
+from modules.courses.chemical.chemicals_training_flow import (
+    training_flow as chemicals_training
+)
 
 def load_css():
     with open("styles/main.css", encoding="utf-8") as f:
@@ -22,7 +28,10 @@ def load_css():
 
 def get_progress_percentage():
 
-    if st.session_state.get("course_name") == "Bioseguridad":
+    if st.session_state.get("course_name") in [
+        "Bioseguridad",
+        "Seguridad y manejo de químicos"
+        ]:
 
         course_steps = [
             "video1",
@@ -147,6 +156,9 @@ elif not st.session_state["initial_quiz_done"]:
     if st.session_state.get("course_name") == "Bioseguridad":
         biosecurity_initial_quiz()
 
+    elif st.session_state.get("course_name") == "Seguridad y manejo de químicos":
+        chemicals_initial_quiz()
+
     else:
         initial_quiz_screen()
 
@@ -155,6 +167,9 @@ else:
 
     if st.session_state.get("course_name") == "Bioseguridad":
         biosecurity_training()
+
+    elif st.session_state.get("course_name") == "Seguridad y manejo de químicos":
+        chemicals_training()
 
     else:
         training_flow()

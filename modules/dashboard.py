@@ -170,6 +170,85 @@ BIO_QUESTION_MAPPING = {
     "q18": "q18"
 }
 
+CHEMICAL_QUESTION_TEXT = {
+    "q4": "Si no ha recibido entrenamiento para trabajar con un químico o no está seguro, ¿qué debe hacer?",
+    "q5": "¿Cuál de las siguientes situaciones aumenta más su riesgo de sufrir una lesión por químicos?",
+    "q6": "Si estás embarazada, crees que podrías estarlo o estás amamantando, ¿qué debes hacer antes de manipular químicos?",
+    "q7": "¿Qué palabra de señal indica que un químico puede causar lesiones graves, daños permanentes o incluso la muerte?",
+    "q8": "Si la etiqueta de un envase está dañada o no puede leerse, ¿qué debe hacer?",
+
+    "q9": "Al manejar químicos corrosivos o tóxicos, ¿qué EPP se requiere normalmente como mínimo?",
+    "q10": "Después de avisar a los compañeros cercanos sobre un derrame menor, ¿cuál es la siguiente acción?",
+    "q11": "¿Cuál de los siguientes se considera un derrame químico mayor?",
+    "q12": "En caso de exposición a los ojos, ¿durante cuánto tiempo debe enjuagarse?",
+    "q13": "Si una persona traga un químico, ¿qué debe evitar hacer?",
+
+    "q14": "Después de una exposición química debe buscar atención médica inmediata.",
+    "q15": "Al mezclar o diluir químicos, ¿cuál es la práctica correcta?",
+    "q16": "¿Cuál es el orden correcto para limpiar y desinfectar equipos y superficies?",
+    "q17": "¿Cuál de las siguientes prácticas es correcta al almacenar químicos?",
+    "q18": "¿Qué debe hacerse con los desechos químicos?"
+}
+CHEMICAL_POST_QUESTION_TEXT = {
+    "q4": "Si no ha recibido entrenamiento para trabajar con un químico o no está seguro, ¿qué debe hacer?",
+    "q5": "¿Cuál de las siguientes situaciones aumenta más su riesgo de sufrir una lesión por químicos?",
+    "q6": "Si estás embarazada, crees que podrías estarlo o estás amamantando, ¿qué debes hacer antes de manipular químicos?",
+    "q7": "¿Qué palabra de señal indica que un químico puede causar lesiones graves, daños permanentes o incluso la muerte?",
+    "q8": "Si la etiqueta de un envase está dañada o no puede leerse, ¿qué debe hacer?",
+
+    "q9": "Al manejar químicos corrosivos o tóxicos, ¿qué EPP se requiere normalmente como mínimo?",
+    "q10": "Después de avisar a los compañeros cercanos sobre un derrame menor, ¿cuál es la siguiente acción?",
+    "q11": "¿Cuál de los siguientes se considera un derrame químico mayor?",
+    "q12": "En caso de exposición a los ojos, ¿durante cuánto tiempo debe enjuagarse?",
+    "q13": "Si una persona traga un químico, ¿qué debe evitar hacer?",
+
+    "q14": "¿Después de enjuagar los ojos o piel durante 15 minutos tras una exposición química debe buscar atención médica inmediata?",
+    "q15": "Al mezclar o diluir químicos, ¿cuál es la práctica correcta?",
+    "q16": "¿Cuál es el orden correcto para limpiar y desinfectar equipos y superficies?",
+    "q17": "¿Cuál de las siguientes prácticas es correcta al almacenar químicos?",
+    "q18": "¿Qué debe hacerse con los desechos químicos?"
+}
+
+CHEMICAL_VIDEO_MAPPING = {
+
+    "📹 Módulo 1 – Seguridad y manejo de químicos": {
+        "questions": ["q4", "q5", "q6", "q7", "q8"],
+        "recommendation":
+        "Repasa los conceptos básicos de seguridad química, lectura de etiquetas y palabras de advertencia."
+    },
+
+    "📹 Módulo 2 – Uso correcto de EPP y respuesta a derrames": {
+        "questions": ["q9", "q10", "q11", "q12", "q13"],
+        "recommendation":
+        "Revisa el uso correcto del equipo de protección personal y los procedimientos ante derrames y exposiciones."
+    },
+
+    "📹 Módulo 3 – Buenas prácticas para el manejo de químicos": {
+        "questions": ["q14", "q15", "q16", "q17", "q18"],
+        "recommendation":
+        "Repasa almacenamiento seguro, limpieza, desinfección y disposición de residuos químicos."
+    }
+}
+
+CHEMICAL_QUESTION_MAPPING = {
+    "q4": "q4",
+    "q5": "q5",
+    "q6": "q6",
+    "q7": "q7",
+    "q8": "q8",
+    "q9": "q9",
+    "q10": "q10",
+    "q11": "q11",
+    "q12": "q12",
+    "q13": "q13",
+    "q14": "q14",
+    "q15": "q15",
+    "q16": "q16",
+    "q17": "q17",
+    "q18": "q18"
+}
+
+
 
 def load_csv(file):
     #path:f"data/{file}"
@@ -219,7 +298,8 @@ def dashboard():
         "Seleccione un curso",
         [
             "Seguridad contra incendios",
-            "Bioseguridad"
+            "Bioseguridad",
+            "Seguridad y manejo de químicos"
         ],index=None,
         placeholder="Seleccione un curso..."
 
@@ -242,6 +322,13 @@ def dashboard():
         post_question_text = BIO_POST_QUESTION_TEXT
         video_mapping = BIO_VIDEO_MAPPING
         question_mapping = BIO_QUESTION_MAPPING
+        total_questions = 15
+
+    elif selected_course == "Seguridad y manejo de químicos":
+        question_text = CHEMICAL_QUESTION_TEXT
+        post_question_text = CHEMICAL_POST_QUESTION_TEXT
+        video_mapping = CHEMICAL_VIDEO_MAPPING
+        question_mapping = CHEMICAL_QUESTION_MAPPING
         total_questions = 15
 
 
@@ -313,6 +400,8 @@ def dashboard():
             "q17_correct": "q17_correct_pre",
             "q18_correct": "q18_correct_pre"
         })
+    elif selected_course == "Seguridad y manejo de químicos":
+        pass
 
     if merged.empty:
         st.error("❌ No matching users between pre and post")

@@ -4,7 +4,7 @@ from supabase_client import supabase
 from datetime import datetime
 
 # Los nuevos cursos deben seguir el modelo de Bioseguridad
-# usando las mismas preguntas q4-q18 en pre y post. y q1 a q3 preguntas de percepcion personal 
+# usando las mismas preguntas q4-q18 en pre peroy post. y q1 a q3 preguntas de percepcion personal 
 
 def initial_quiz_screen():
 
