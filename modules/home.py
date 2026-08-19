@@ -108,6 +108,7 @@ def home_screen():
                     st.session_state["training_start_time"] = datetime.now()
 
                     st.rerun()
+    '''
     with st.container(border=True):
                    st.markdown("""**Bioseguridad en granjas lecheras**""")
                    st.info("La capacitacion incluye 3 videos cortos, con una duración de 11 minutos. Por favor, reserve 18 minutos para completar toda la capacitación, incluyendo las preguntas.")
@@ -244,7 +245,7 @@ def home_screen():
                             st.session_state["training_start_time"] = datetime.now()
     
                             st.rerun()
-
+'''
 
     # Layout en columnas
     st.markdown("""**Revisa nuestro canal de youtube**""")
@@ -254,8 +255,17 @@ def home_screen():
                 st.video(f"https://youtu.be/Bxfk5FafrVE")
                 st.markdown("")
     with col2:
-                st.video(f"https://youtu.be/OWW2OET7ms4")
+                st.video(f"https://youtu.be/-WNqzmxy9No")
                 st.markdown("")
+                
+    col1, col2 = st.columns([1,1])
+        
+    with col1:
+                    st.video(f"https://youtu.be/bFUBN7CKVIw")
+                    st.markdown("")
+    with col2:
+                    st.video(f"https://youtu.be/PpOCbRfQbD8")
+                    st.markdown("")
                   
     # Layout en columnas
     #col1, col2 = st.columns([1,1])

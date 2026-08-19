@@ -7,6 +7,7 @@ from modules.dashboard import dashboard
 from supabase_client import supabase
 from modules.who_we_are import who_we_are
 from modules.progress import get_progress
+from modules.admin import admin_panel
 from modules.courses.biosecurity.biosecurity_initial_quiz import (
     initial_quiz_screen as biosecurity_initial_quiz
 )
@@ -81,6 +82,19 @@ if "go_to_registration" not in st.session_state:
 
 if "initial_quiz_done" not in st.session_state:
     st.session_state["initial_quiz_done"] = False
+ADMIN_EMAIL = "dairyfarmtraining@gmail.com"
+
+is_admin = False
+
+if "user" in st.session_state:
+
+    user_email = (
+        st.session_state["user"]["email"]
+        .strip()
+        .lower()
+    )
+
+    is_admin = user_email == ADMIN_EMAIL
 
 # --------- SIDEBAR ---------
 with st.sidebar:
@@ -107,7 +121,17 @@ with st.sidebar:
     if st.button("👥 Quiénes somos"):
         st.session_state["selected_training"] = "about"
         st.rerun()
+    if is_admin:
 
+        st.markdown("---")
+
+        st.markdown("### 🔒 Administración")
+
+        if st.button("📥 Exportar datos"):
+
+            st.session_state["selected_training"] = "admin"
+
+            st.rerun()
     # Curso
     if "course_name" in st.session_state:
 
@@ -135,8 +159,12 @@ with st.sidebar:
 # --------- FLUJO PRINCIPAL ---------
 
 # DASHBOARD (prioridad alta)
-if st.session_state.get("selected_training") == "dashboard":
+if st.session_state.get("selected_training") == "admin":
+    admin_panel()
+
+elif st.session_state.get("selected_training") == "dashboard":
     dashboard()
+
 #quienes sommos
 elif st.session_state.get("selected_training") == "about":
     who_we_are()
